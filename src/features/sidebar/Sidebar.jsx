@@ -115,6 +115,14 @@ const Sidebar = ({ experimentalFeaturesEnabled, isOpen, workbench }) => (
         )}
         {hasShowControl && (
           <Module
+            id='game'
+            icon={<Gamepad />}
+            label='Game control'
+            component='game-control'
+          />
+        )}
+        {hasShowControl && (
+          <Module
             id='lights'
             icon={<WbSunny />}
             label='Light control'

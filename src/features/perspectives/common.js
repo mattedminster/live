@@ -35,6 +35,7 @@ const commonLayouts = {
               type: 'stack',
               contents: [
                 { type: 'panel', component: 'show-control', id: 'show' },
+                { type: 'panel', component: 'game-control', id: 'game' },
                 { type: 'panel', component: 'light-control', id: 'lights' },
               ],
             },

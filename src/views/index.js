@@ -9,6 +9,7 @@ import ConnectionList from './connections';
 import DatasetList from './datasets';
 import DockList from './docks';
 import FeatureList from './features';
+import GameControlPanel from './game-control';
 import LayerList from './layers';
 import LCDClockPanel from './lcd-clock';
 import LightControlPanel from './light-control';
@@ -28,6 +29,7 @@ const views = {
   DatasetList,
   DockList,
   FeatureList,
+  GameControlPanel,
   LayerList,
   LCDClockPanel,
   LightControlPanel,

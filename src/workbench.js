@@ -141,6 +141,12 @@ export const componentRegistry = {
     detachable: true,
     feature: 'showControl',
   },
+  'game-control': {
+    component: views.GameControlPanel,
+    label: 'Game control',
+    detachable: true,
+    feature: 'gameControl',
+  },
   'three-d-view': {
     component: views.ThreeDTopLevelView,
     label: '3D View',

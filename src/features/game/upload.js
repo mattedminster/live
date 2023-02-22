@@ -124,6 +124,8 @@ export function createShowConfigurationForUav(state, uavId) {
  * @param data     the show specification, as selected from the state store
  */
 async function runSingleShowUpload({ uavId, data }) {
+  // Send the geofence specification to the GCS
+  
   // No need for a timeout here; it utilizes the message hub, which has its
   // own timeout for failed command executions (although it is quite long)
   const cancelToken = messageHub.createCancelToken();
