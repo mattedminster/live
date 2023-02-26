@@ -187,11 +187,11 @@ const StartTimeForm = ({
               variant: 'filled',
             }}
           >
-            <MenuItem value={StartMethod.RC}>
-              Start show with remote controller only (safer)
-            </MenuItem>
             <MenuItem value={StartMethod.AUTO}>
               Start show automatically
+            </MenuItem>
+            <MenuItem value={StartMethod.RC}>
+              Start show with remote controller only (safer)
             </MenuItem>
           </Select>
         </DialogContent>
@@ -279,7 +279,7 @@ StartTimeDialog.propTypes = {
 };
 
 StartTimeDialog.defaultProps = {
-  method: StartMethod.RC,
+  method: StartMethod.AUTO,
   open: false,
 };
 

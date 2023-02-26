@@ -45,7 +45,7 @@ const ShowControlPanelUpperSegment = ({ environmentType, isAuthorized }) => (
 
         <Divider />
 
-        <StartTimeButton />
+        {/* <StartTimeButton /> */}
       </List>
     </Page>
     <Page id='execution' display='flex' flexDirection='column'>

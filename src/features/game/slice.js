@@ -99,7 +99,7 @@ const { actions, reducer } = createSlice({
 
       // whether the show is started automatically or manually with a remote
       // controller
-      method: StartMethod.RC,
+      method: StartMethod.AUTO,
 
       // the list of UAV IDs that the server will start automatically. This
       // value is read from the server only but is never written there; we will
@@ -150,7 +150,7 @@ const { actions, reducer } = createSlice({
     clearStartTimeAndMethod(state) {
       state.start.utcTime = null;
       state.start.timeOnClock = null;
-      state.start.method = StartMethod.RC;
+      state.start.method = StartMethod.AUTO;
     },
 
     closeEnvironmentEditorDialog: noPayload((state) => {

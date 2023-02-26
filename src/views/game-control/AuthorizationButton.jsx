@@ -44,7 +44,7 @@ const AuthorizationButton = ({
       primary={
         <Typography variant='button'>
           {isAuthorized
-            ? 'Show authorized to start'
+            ? 'Game authorized to start'
             : 'Authorize start of game'}
         </Typography>
       }

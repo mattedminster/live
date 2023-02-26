@@ -20,7 +20,7 @@ import {
 
 const primaryTextForStartMethod = {
   [StartMethod.RC]: 'Use the switch on your RC to start',
-  [StartMethod.AUTO]: 'Show will start automatically',
+  [StartMethod.AUTO]: 'Game will start automatically',
 };
 
 const iconForStartMethod = {
@@ -49,7 +49,7 @@ const StartMethodExplanation = ({ hasScheduledStartTime, startMethod }) => (
               Show clock: <ClockDisplayLabel clockId='show' />
             </>
           ) : (
-            'Start time not set yet'
+            'Start time not set yet. The game will begin momentarily.'
           )
         }
       />
