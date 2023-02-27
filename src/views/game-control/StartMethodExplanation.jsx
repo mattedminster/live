@@ -19,7 +19,7 @@ import {
 } from '~/features/show/selectors';
 
 const primaryTextForStartMethod = {
-  [StartMethod.RC]: 'Use the switch on your RC to start',
+  [StartMethod.RC]: 'Let the fun begin!',
   [StartMethod.AUTO]: 'Game will start automatically',
 };
 
@@ -49,7 +49,7 @@ const StartMethodExplanation = ({ hasScheduledStartTime, startMethod }) => (
               Show clock: <ClockDisplayLabel clockId='show' />
             </>
           ) : (
-            'Start time not set yet. The game will begin momentarily.'
+            'Start time was not set. The game will begin momentarily.'
           )
         }
       />
