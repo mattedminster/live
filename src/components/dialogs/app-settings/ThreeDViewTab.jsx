@@ -137,6 +137,17 @@ const ThreeDViewTab = (props) => (
       />
 
       <FormControlLabel
+        label='Show beacon positions'
+        control={
+          <Checkbox
+            checked={props.showBeaconPositions}
+            name='showBeaconPositions'
+            onChange={props.onCheckboxToggled}
+          />
+        }
+      />
+
+      <FormControlLabel
         label='Show landing positions'
         control={
           <Checkbox

@@ -17,6 +17,18 @@ export const mapPosition = (positionFromServer) =>
       }
     : null;
 
+export const mapAttitude = (attitudeFromServer) =>
+    attitudeFromServer &&
+    Array.isArray(attitudeFromServer) &&
+    (attitudeFromServer[0] !== 0 || attitudeFromServer[1] !== 0)
+      ? {
+          lat: attitudeFromServer[0] / 1e7,
+          lon: attitudeFromServer[1] / 1e7,
+          amsl: isNil(attitudeFromServer[2]) ? null : attitudeFromServer[2] / 1e3,
+          agl: isNil(attitudeFromServer[3]) ? null : attitudeFromServer[3] / 1e3,
+        }
+      : null;
+
 export const mapHeading = (headingFromServer) =>
   headingFromServer && typeof headingFromServer === 'number'
     ? headingFromServer / 10
@@ -34,13 +46,14 @@ export function handleBeaconInformationMessage(body, dispatch) {
   // by our Redux actions. Omit keys for which the values are not
   // provided by the server.
 
-  const states = mapValues(body.status, ({ id, active, heading, position }) =>
+  const states = mapValues(body.status, ({ id, active, heading, position, attitude }) =>
     omitBy(
       {
         id,
         position: mapPosition(position),
         heading: mapHeading(heading),
         active,
+        attitude,
       },
       isUndefined
     )

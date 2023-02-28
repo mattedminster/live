@@ -74,10 +74,13 @@ const { actions, reducer } = createSlice({
       quality: 'medium',
 
       // Whether to show the coordinate system axes
-      showAxes: true,
+      showAxes: false,
 
       // Whether to show the home positions of the UAVs
-      showHomePositions: true,
+      showHomePositions: false,
+
+      // Whether to show the beacons positions
+      showBeaconPositions: true,
 
       // Whether to show the landing positions of the UAVs
       showLandingPositions: false,

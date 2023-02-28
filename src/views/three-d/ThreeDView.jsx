@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import CoordinateSystemAxes from './CoordinateSystemAxes';
 import HomePositionMarkers from './HomePositionMarkers';
+import BeaconPositionMarkers from './BeaconPositionMarkers';
 import LandingPositionMarkers from './LandingPositionMarkers';
 import Room from './Room';
 import Scenery from './Scenery';
@@ -57,6 +58,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
     sceneId,
     scenery,
     showAxes,
+    showBeaconPositions,
     showHomePositions,
     showLandingPositions,
     showStatistics,
@@ -107,9 +109,18 @@ const ThreeDView = React.forwardRef((props, ref) => {
           material={`color: ${Colors.markers.takeoff}; shader: flat; side: double`}
         />
         <a-mixin
+          id='beacon-marker'
+          geometry='primitive: triangle; vertexA: -2 0 0; vertexB: 0.5 .866 0; vertexC: .5 -0.866 0'
+          material={`color: purple; shader: flat; side: double`}
+        />
+        <a-mixin
           id='landing-marker'
           geometry='primitive: triangle; vertexA: -1 0 0; vertexB: 0.5 -0.866 0; vertexC: 0.5 0.866 0'
           material={`color: ${Colors.markers.landing}; shader: flat; side: double`}
+        />
+        <a-mixin
+          id="shoot-line"
+          meshline={`lineWidth: 1; path: 0 0 0, 10 0 0; color: purple`}
         />
       </a-assets>
 
@@ -133,6 +144,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
             lineWidth={10}
           />
         )}
+        {showBeaconPositions && <BeaconPositionMarkers />}
         {showHomePositions && <HomePositionMarkers />}
         {showLandingPositions && <LandingPositionMarkers />}
         {showTrajectoriesOfSelection && <SelectedTrajectories />}
@@ -160,6 +172,7 @@ ThreeDView.propTypes = {
   scenery: PropTypes.oneOf(['outdoor', 'indoor']),
   showAxes: PropTypes.bool,
   showHomePositions: PropTypes.bool,
+  showBeaconPositions: PropTypes.bool,
   showLandingPositions: PropTypes.bool,
   showStatistics: PropTypes.bool,
   showTrajectoriesOfSelection: PropTypes.bool,

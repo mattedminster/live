@@ -29,6 +29,7 @@ function updateStateOfBeacon(state, id, properties) {
       position: null,
       heading: null,
       active: false,
+      attitude: null,
     };
     state.order.push(id);
   }

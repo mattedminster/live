@@ -3,6 +3,10 @@ import { createSelector } from '@reduxjs/toolkit';
 import { globalIdToBeaconId } from '~/model/identifiers';
 import { selectionForSubset } from '~/selectors/selection';
 import { selectOrdered } from '~/utils/collections';
+import { getFlatEarthCoordinateTransformer } from '~/selectors/map';
+//import { getGPSToThreeJSTransformation } from '~/features/three-d/selectors';
+import isNil from 'lodash-es/isNil';
+
 
 /**
  * Selector that calculates and caches the list of all the beacons that
@@ -19,6 +23,96 @@ export const getBeaconsInOrder = createSelector(
  * from the state object.
  */
 export const getSelectedBeaconIds = selectionForSubset(globalIdToBeaconId);
+
+
+/**
+ * Returns a function that can be called with a single object having `lon`,
+ * `lat` and `agl` properties and that returns the corresponding coordinate
+ * in the coordinate system used by the 3D view.
+ */
+const getGPSToThreeJSTransformation = createSelector(
+  getFlatEarthCoordinateTransformer,
+  (transformation) => {
+    const flipY = transformation?.type !== 'nwu';
+    return (coordinate) => {
+      if (isNil(coordinate) || !transformation) {
+        return null;
+      }
+
+      const result = transformation.fromLonLatAgl([
+        coordinate.lon,
+        coordinate.lat,
+        coordinate.agl,
+      ]);
+
+      if (flipY) {
+        // Three.JS is always right-handed but our flat Earth coordinate system
+        // might be left-handed, so we have the opportunity to flip the Y axis.
+        result[1] = -result[1];
+      }
+
+      return result;
+    };
+  }
+);
+
+
+
+
+/**
+ * Returns the current beacon positions.
+ *
+ * @param  {Object}  state  the state of the application
+ */
+export const getBeaconGPSPositions = createSelector(
+     (state) => state.beacons,
+     (beacons) => {
+      const result = [];
+
+      for (const [key, value] of Object.entries(beacons.byId)) {
+        const coordinate = {lon: value.position.lon, lat: value.position.lat, agl: value.position.agl};
+        result.push(coordinate);
+      }
+      //console.log(result);
+      return result;
+    },
+   
+    // (beaconPositions, gpsToThreeJSTransformation) => beaconPositions.map(gpsToThreeJSTransformation)
+  );
+
+
+export const getBeaconAttitude = createSelector(
+    (state) => state.beacons,
+    (beacons) => {
+     const result = [];
+
+     for (const [key, value] of Object.entries(beacons.byId)) {
+       const attitude = value.attitude;
+       //flip the pitch
+       //attitude[1] = attitude[1] * -1;
+ 
+       return attitude;
+       
+     }
+
+     return result;
+   },
+  
+   // (beaconPositions, gpsToThreeJSTransformation) => beaconPositions.map(gpsToThreeJSTransformation)
+ );
+
+
+// export const getBeaconAttitudeForThreeDView = createSelector(
+//   getBeaconBeaconPositions,
+//   getGPSToThreeJSTransformation,
+//   (beaconPositions, transformation) => beaconPositions.map(transformation)
+// );
+
+export const getBeaconForThreeDView = createSelector(
+    getBeaconGPSPositions,
+    getGPSToThreeJSTransformation,
+    (beaconPositions, transformation) => beaconPositions.map(transformation)
+  );
 
 /**
  * Funciton that returns the name of the given beacon that should be shown to
