@@ -148,6 +148,17 @@ const ThreeDViewTab = (props) => (
       />
 
       <FormControlLabel
+        label='Show shoot lines'
+        control={
+          <Checkbox
+            checked={props.showShootLines}
+            name='showShootLines'
+            onChange={props.onCheckboxToggled}
+          />
+        }
+      />
+
+      <FormControlLabel
         label='Show landing positions'
         control={
           <Checkbox

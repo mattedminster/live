@@ -82,6 +82,8 @@ const { actions, reducer } = createSlice({
       // Whether to show the beacons positions
       showBeaconPositions: true,
 
+      showShootLines: true,
+
       // Whether to show the landing positions of the UAVs
       showLandingPositions: false,
 

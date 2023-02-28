@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import CoordinateSystemAxes from './CoordinateSystemAxes';
 import HomePositionMarkers from './HomePositionMarkers';
+import ShootLineMarkers from './ShootLineMarkers';
 import BeaconPositionMarkers from './BeaconPositionMarkers';
 import LandingPositionMarkers from './LandingPositionMarkers';
 import Room from './Room';
@@ -59,6 +60,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
     scenery,
     showAxes,
     showBeaconPositions,
+    showShootLines,
     showHomePositions,
     showLandingPositions,
     showStatistics,
@@ -120,7 +122,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
         />
         <a-mixin
           id="shoot-line"
-          meshline={`lineWidth: 1; path: 0 0 0, 10 0 0; color: purple`}
+          meshline={`lineWidth: 5; path: 0 0 0, -50 0 0; color: orange;`}
         />
       </a-assets>
 
@@ -144,6 +146,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
             lineWidth={10}
           />
         )}
+        {showShootLines && <ShootLineMarkers />}
         {showBeaconPositions && <BeaconPositionMarkers />}
         {showHomePositions && <HomePositionMarkers />}
         {showLandingPositions && <LandingPositionMarkers />}
@@ -172,6 +175,7 @@ ThreeDView.propTypes = {
   scenery: PropTypes.oneOf(['outdoor', 'indoor']),
   showAxes: PropTypes.bool,
   showHomePositions: PropTypes.bool,
+  showShootLines: PropTypes.bool,
   showBeaconPositions: PropTypes.bool,
   showLandingPositions: PropTypes.bool,
   showStatistics: PropTypes.bool,
