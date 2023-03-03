@@ -70,14 +70,15 @@ export const getBeaconGPSPositions = createSelector(
       const result = [];
 
       for (const [key, value] of Object.entries(beacons.byId)) {
+        if (value.position != null){
         const coordinate = {lon: value.position.lon, lat: value.position.lat, agl: value.position.agl};
         result.push(coordinate);
+        }
       }
-      //console.log(result);
+
       return result;
     },
    
-    // (beaconPositions, gpsToThreeJSTransformation) => beaconPositions.map(gpsToThreeJSTransformation)
   );
 
 
@@ -88,9 +89,6 @@ export const getBeaconAttitude = createSelector(
 
      for (const [key, value] of Object.entries(beacons.byId)) {
        const attitude = value.attitude;
-       //flip the pitch
-       //attitude[1] = attitude[1] * -1;
- 
        return attitude;
        
      }
@@ -98,15 +96,9 @@ export const getBeaconAttitude = createSelector(
      return result;
    },
   
-   // (beaconPositions, gpsToThreeJSTransformation) => beaconPositions.map(gpsToThreeJSTransformation)
  );
 
 
-// export const getBeaconAttitudeForThreeDView = createSelector(
-//   getBeaconBeaconPositions,
-//   getGPSToThreeJSTransformation,
-//   (beaconPositions, transformation) => beaconPositions.map(transformation)
-// );
 
 export const getBeaconForThreeDView = createSelector(
     getBeaconGPSPositions,

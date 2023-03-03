@@ -112,7 +112,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
         />
         <a-mixin
           id='beacon-marker'
-          geometry='primitive: triangle; vertexA: -2 0 0; vertexB: 0.5 .866 0; vertexC: .5 -0.866 0'
+          geometry='primitive: triangle; vertexA: -2 0 0; vertexB: 0.5 .866 0; vertexC: .5 -0.866 0' 
           material={`color: purple; shader: flat; side: double`}
         />
         <a-mixin
