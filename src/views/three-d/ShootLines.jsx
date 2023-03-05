@@ -8,9 +8,11 @@ import React from 'react';
 const ShootLines = ({ coordinates, mixin, rotation }) =>
   coordinates.map((coordinate, index) => {
     const key = `${mixin}-${index}`;
-    //console.log('Beacons', key, coordinate, mixin, rotation);
-    //rotation[1] = rotation[1] * -1;
-    const rot = [rotation[0], rotation[1] * -1, rotation[2]* -1];
+
+    let rot = [0,0,0]
+    if (rotation != null){
+      rot = [rotation[0], rotation[1] * -1, rotation[2]* -1];
+    }
     return (
       coordinate && (
         <a-entity key={key} mixin={mixin} position={coordinate.join(' ')} rotation={rot.join(' ')} />

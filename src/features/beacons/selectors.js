@@ -4,7 +4,7 @@ import { globalIdToBeaconId } from '~/model/identifiers';
 import { selectionForSubset } from '~/selectors/selection';
 import { selectOrdered } from '~/utils/collections';
 import { getFlatEarthCoordinateTransformer } from '~/selectors/map';
-//import { getGPSToThreeJSTransformation } from '~/features/three-d/selectors';
+
 import isNil from 'lodash-es/isNil';
 
 
@@ -70,6 +70,7 @@ export const getBeaconGPSPositions = createSelector(
       const result = [];
 
       for (const [key, value] of Object.entries(beacons.byId)) {
+        console.log(value);
         if (value.position != null){
         const coordinate = {lon: value.position.lon, lat: value.position.lat, agl: value.position.agl};
         result.push(coordinate);
