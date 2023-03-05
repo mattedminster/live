@@ -164,7 +164,6 @@ const stageOrder = [
   'uploadShow',
   'waitForOnboardPreflightChecks',
   'performManualPreflightChecks',
-  'setupStartTime',
   'authorization',
 ];
 
