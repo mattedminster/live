@@ -9,8 +9,9 @@ const Beacons = ({ coordinates, mixin, rotation }) =>
   coordinates.map((coordinate, index) => {
     const key = `${mixin}-${index}`;
     let rot = [0,0,0]
+    //console.log("rotation:"+ rotation)
     if (rotation != null){
-      rot = [rotation[0], rotation[1] * -1, rotation[2]* -1];
+      rot = [rotation[0], rotation[1], rotation[2]];
     }
     return (
       coordinate && (

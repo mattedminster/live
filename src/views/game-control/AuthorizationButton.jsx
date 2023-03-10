@@ -52,7 +52,7 @@ const AuthorizationButton = ({
         <Typography variant='body2' color='textSecondary'>
           {isAuthorized
             ? numUAVsTakingOffAutomatically <= 0
-              ? 'Click here to revoke authorization and END THE GAME immediately'
+              ? 'Click here to revoke authorization'
               : numUAVsTakingOffAutomatically === 1
               ? 'One drone will take off automatically'
               : `${numUAVsTakingOffAutomatically} drones will take off automatically`

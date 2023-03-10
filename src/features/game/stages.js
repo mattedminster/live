@@ -68,6 +68,12 @@ const stages = {
     requires: ['selectShowFile'],
   },
 
+  setupPlayers:{
+    evaluate: (state) =>
+      hasLoadedShowFile(state) && (hasShowOrigin(state) || isShowIndoor(state)),
+    requires: ['selectShowFile'],
+  },
+
   setupTakeoffArea: {
     evaluate: (state) =>
       isTakeoffAreaApproved(state)
@@ -159,6 +165,7 @@ const stages = {
 const stageOrder = [
   'selectShowFile',
   'setupEnvironment',
+  'setupPlayers',
   'setupTakeoffArea',
   'setupGeofence',
   'uploadShow',
