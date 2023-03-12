@@ -49,7 +49,7 @@ const StartMethodExplanation = ({ hasScheduledStartTime, startMethod }) => (
               Show clock: <ClockDisplayLabel clockId='show' />
             </>
           ) : (
-            'Start time was not set. The game will begin momentarily.'
+            'The game will begin momentarily.'
           )
         }
       />

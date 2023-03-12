@@ -11,7 +11,7 @@ const ShootLines = ({ coordinates, mixin, rotation }) =>
 
     let rot = [0,0,0]
     if (rotation != null){
-      rot = [rotation[0], rotation[1], rotation[2]];
+      rot = [rotation[0], rotation[1], (rotation[2]*-1)-25];
     }
     return (
       coordinate && (
