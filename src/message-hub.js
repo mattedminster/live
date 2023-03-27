@@ -19,6 +19,7 @@ import {
   handleConnectionInformationMessage,
 } from './model/connections';
 import { handleObjectDeletionMessage } from './model/objects';
+import { handleShowConfigMessage } from './model/show';
 
 import { addInboundMessage } from './features/messages/slice';
 import { showError, showNotification } from './features/snackbar/actions';
@@ -51,6 +52,7 @@ messageHub.registerNotificationHandlers({
     handleConnectionInformationMessage(message.body, dispatch),
   'DOCK-INF': (message) => handleDockInformationMessage(message.body, dispatch),
   'OBJ-DEL': (message) => handleObjectDeletionMessage(message.body, dispatch),
+  'SHOW-CFG': (message) => handleShowConfigMessage(message.body, dispatch),
   'SYS-CLOSE': (message) => {
     if (message.body && message.body.reason) {
       dispatch(showError(message.body.reason));
