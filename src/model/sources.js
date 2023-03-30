@@ -65,7 +65,7 @@ if (APIKeys.MAPTILER) {
  * this branch is currently disabled */
 
 // eslint-disable-next-line no-constant-condition
-if (false) {
+
   if (APIKeys.BING) {
     Sources.push(Source.BING_MAPS.AERIAL_WITH_LABELS, Source.BING_MAPS.ROAD);
   }
@@ -73,7 +73,7 @@ if (false) {
   if (APIKeys.GOOGLE) {
     Sources.push(Source.GOOGLE_MAPS.DEFAULT, Source.GOOGLE_MAPS.SATELLITE);
   }
-}
+
 
 const attributions = {
   mapbox: [
