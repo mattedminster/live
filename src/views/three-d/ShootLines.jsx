@@ -8,10 +8,16 @@ import React from 'react';
 const ShootLines = ({ coordinates, mixin, rotation }) =>
   coordinates.map((coordinate, index) => {
     const key = `${mixin}-${index}`;
+    //console.log("rotation: " + rotation);
 
     let rot = [0,0,0]
+    
+    
     if (rotation != null){
-      rot = [rotation[0], rotation[1], (rotation[2]*-1)-25];
+      var rotZ = rotation[2] + 225;
+      //console.log("rotZ: " + rotZ);
+      rot = [rotation[0], rotation[1]*-1, rotZ];
+      //console.log(rot);
     }
     return (
       coordinate && (
