@@ -98,6 +98,24 @@ export const getBeaconAttitude = createSelector(
   
  );
 
+ export const getBeaconName = createSelector(
+  (state) => state.beacons,
+  (beacons) => {
+
+
+   for (const [key, value] of Object.entries(beacons.byId)) {
+    //console.log(value.name)
+     const name = value.name;
+     return name;
+     
+   }
+
+    return null;
+ },
+
+);
+
+
 
 
 export const getBeaconForThreeDView = createSelector(

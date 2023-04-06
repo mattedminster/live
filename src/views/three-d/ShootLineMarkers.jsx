@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 //import { getHomePositionsInMissionForThreeDView } from '~/features/three-d/selectors';
-import {getBeaconAttitude, getBeaconForThreeDView} from '~/features/beacons/selectors';
+import {getBeaconAttitude, getBeaconName, getBeaconForThreeDView} from '~/features/beacons/selectors';
 
 import ShootLines from './ShootLines';
 
@@ -12,6 +12,7 @@ export default connect(
     coordinates: getBeaconForThreeDView(state),
     mixin: 'shoot-line',
     rotation: getBeaconAttitude(state),
+    name: getBeaconName(state),
   }),
   // mapDispatchToProps
   {}
