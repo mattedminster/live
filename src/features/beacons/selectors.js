@@ -88,6 +88,7 @@ export const getBeaconAttitude = createSelector(
      const result = [];
 
      for (const [key, value] of Object.entries(beacons.byId)) {
+      //console.log(value.attitude);
        const attitude = value.attitude;
        return attitude;
        
