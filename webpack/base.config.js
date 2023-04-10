@@ -83,6 +83,19 @@ module.exports = {
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
       {
+        test: /\.obj$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/models',
+            },
+          },
+        ],
+        include: path.join(projectRoot, 'assets', 'models'),
+      },
+      {
         test: /\.m?jsx?$/,
         use: [
           {

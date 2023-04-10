@@ -27,7 +27,7 @@ import { isShowIndoor } from '~/features/show/selectors';
 import { isMapCoordinateSystemLeftHanded } from '~/selectors/map';
 
 import glowImage from '~/../assets/img/sphere-glow-hollow.png';
-
+import obj from '~/../assets/models/shotgun_nwu.obj';
 const images = {
   glow: glowImage,
 };
@@ -104,6 +104,9 @@ const ThreeDView = React.forwardRef((props, ref) => {
       {...extraSceneProps}
     >
       <a-assets>
+      <a-asset-item id="gun-obj" src="~/../assets/models/shotgun_nwu.obj"></a-asset-item>
+     
+
         <img crossOrigin='anonymous' id='glow-texture' src={images.glow} />
         <a-mixin
           id='takeoff-marker'
@@ -121,8 +124,16 @@ const ThreeDView = React.forwardRef((props, ref) => {
           material={`color: ${Colors.markers.landing}; shader: flat; side: double`}
         />
         <a-mixin
-          id="shoot-line"
-          meshline={`lineWidth: 5; path: 0 0 0, -50 0 0; color: orange;`}
+          id="shoot-line-x"
+          meshline={`lineWidth: 5; path: 0 0 0, 50 0 0; color: red;`}
+        />
+        <a-mixin
+          id="shoot-line-y"
+          meshline={`lineWidth: 5; path: 0 0 0, 0 50 0; color: green;`}
+        />
+        <a-mixin
+          id="shoot-line-z"
+          meshline={`lineWidth: 5; path: 0 0 0, 0 0 50; color: blue;`}
         />
       </a-assets>
 
