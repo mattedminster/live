@@ -66,7 +66,7 @@ const environments = {
 const Scenery = ({ grid, type }) => {
   const scale = type === 'indoor-light' || type === 'indoor-dark' ? 0.5 : 10;
   return (
-    <a-entity position='0 -0.02 0' scale={`${scale} ${scale} ${scale}`}>
+    <a-entity position='0 -3.1 0' scale={`${scale} ${scale} ${scale}`}>
       {/* Move the floor slightly down to ensure that the coordinate axes are nicely visible */}
       <a-entity
         environment={objectToString({
