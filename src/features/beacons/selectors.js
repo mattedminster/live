@@ -46,6 +46,7 @@ const getGPSToThreeJSTransformation = createSelector(
       ]);
 
       if (flipY) {
+        console.log("flipping Y");
         // Three.JS is always right-handed but our flat Earth coordinate system
         // might be left-handed, so we have the opportunity to flip the Y axis.
         result[1] = -result[1];
