@@ -155,7 +155,7 @@ const ShootLines = ({ coordinates, mixin, rotation, name }) =>
           return (
           coordinate && (
             <>
-            <a-entity obj-model="obj: #gun-obj;" position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
+            <a-entity obj-model="obj: #gun-obj; mtl: #gun-mtl;" position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
             <a-entity key={key_x} mixin={mixin_x} position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
           </>)
           );

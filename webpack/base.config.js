@@ -83,7 +83,7 @@ module.exports = {
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
       {
-        test: /\.obj$/,
+        test: /\.(obj|mtl)$/,
         use: [
           {
             loader: 'file-loader',
