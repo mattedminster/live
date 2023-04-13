@@ -91,8 +91,7 @@ export const getBeaconAttitude = createSelector(
      for (const [key, value] of Object.entries(beacons.byId)) {
       //console.log(value.attitude);
        const attitude = value.attitude;
-       return attitude;
-       
+       result.push(attitude);
      }
 
      return result;
@@ -103,16 +102,17 @@ export const getBeaconAttitude = createSelector(
  export const getBeaconName = createSelector(
   (state) => state.beacons,
   (beacons) => {
+    const result = [];
+    
 
 
    for (const [key, value] of Object.entries(beacons.byId)) {
     //console.log(value.name)
      const name = value.name;
-     return name;
-     
+     result.push(name); 
    }
 
-    return null;
+    return result;
  },
 
 );

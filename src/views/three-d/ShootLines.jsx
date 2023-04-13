@@ -97,70 +97,70 @@ function multiplyMatrices(A, B) {
  */
 const ShootLines = ({ coordinates, mixin, rotation, name }) =>
   coordinates.map((coordinate, index) => {
-    const mixin_x = `${mixin}-x`;
-    const mixin_y = `${mixin}-y`;
-    const mixin_z = `${mixin}-z`;
+    var player_name = name[index];
+    var player_rotation = rotation[index];
+    if (player_name != null) {
+      if(rotation != null && player_name.includes("Player")){
+        const mixin_x = `${mixin}-x`;
+        const mixin_y = `${mixin}-y`;
+        const mixin_z = `${mixin}-z`;
 
-    const key_x = `${mixin_x}-${index}`;
-    const key_y = `${mixin_y}-${index}`;
-    const key_z = `${mixin_z}-${index}`;
-    
-    let x_rot = [0,0,0];
-    var roll = rotation[0];
-    var pitch = rotation[1];
-    var yaw = rotation[2];
+        const key_x = `${mixin_x}-${index}`;
+        const key_y = `${mixin_y}-${index}`;
+        const key_z = `${mixin_z}-${index}`;
+        
+        let x_rot = [0,0,0];
+        var roll = player_rotation[0];
+        var pitch = player_rotation[1];
+        var yaw = player_rotation[2];
 
-    // Create a new object3D (this could be a Mesh, Group, etc.)
-    const object3D = new THREE.Object3D();
+        // Create a new object3D (this could be a Mesh, Group, etc.)
+        const object3D = new THREE.Object3D();
 
-    // Convert roll, pitch, and yaw to a quaternion
-   const quaternion = new THREE.Quaternion();
-   quaternion.setFromEuler(new THREE.Euler(toRadians(pitch), toRadians(yaw), toRadians(roll), 'ZYX'));
+        // Convert roll, pitch, and yaw to a quaternion
+      const quaternion = new THREE.Quaternion();
+      quaternion.setFromEuler(new THREE.Euler(toRadians(pitch), toRadians(yaw), toRadians(roll), 'ZYX'));
 
-   // Set the object's initial quaternion
-    object3D.quaternion.copy(quaternion);
+      // Set the object's initial quaternion
+        object3D.quaternion.copy(quaternion);
 
-    // Create a rotation matrix for a 180-degree rotation around the x-axis
-    const rotationMatrix = new THREE.Matrix4();
-    // pitch, yaw, roll
-    var rot_matrix = new THREE.Euler(toRadians(0), toRadians(0), toRadians(180), 'ZYX');
-    rotationMatrix.makeRotationFromEuler(rot_matrix);
+        // Create a rotation matrix for a 180-degree rotation around the x-axis
+        const rotationMatrix = new THREE.Matrix4();
+        // pitch, yaw, roll
+        var rot_matrix = new THREE.Euler(toRadians(0), toRadians(0), toRadians(180), 'ZYX');
+        rotationMatrix.makeRotationFromEuler(rot_matrix);
 
-    // Apply the rotation matrix to the object's quaternion
-    object3D.applyMatrix4(rotationMatrix);
+        // Apply the rotation matrix to the object's quaternion
+        object3D.applyMatrix4(rotationMatrix);
 
-    // The object's quaternion is now updated to represent the new orientation
-    //console.log(object3D.quaternion);
+        // The object's quaternion is now updated to represent the new orientation
+        //console.log(object3D.quaternion);
 
-    // Convert the updated quaternion to Euler angles (roll, pitch, yaw)
-    const updatedEuler = new THREE.Euler();
-    updatedEuler.setFromQuaternion(object3D.quaternion, 'ZXY');
+        // Convert the updated quaternion to Euler angles (roll, pitch, yaw)
+        const updatedEuler = new THREE.Euler();
+        updatedEuler.setFromQuaternion(object3D.quaternion, 'ZXY');
 
-    // Extract the roll, pitch, and yaw angles in radians
-    const updatedRoll = updatedEuler.z;
-    const updatedPitch = updatedEuler.x;
-    const updatedYaw = updatedEuler.y;
+        // Extract the roll, pitch, and yaw angles in radians
+        const updatedRoll = updatedEuler.z;
+        const updatedPitch = updatedEuler.x;
+        const updatedYaw = updatedEuler.y;
 
-    // Optionally, convert the angles to degrees
-    const updatedRollDeg = updatedRoll * (180 / Math.PI);
-    const updatedPitchDeg = updatedPitch * (180 / Math.PI);
-    const updatedYawDeg = updatedYaw * (180 / Math.PI);
+        // Optionally, convert the angles to degrees
+        const updatedRollDeg = updatedRoll * (180 / Math.PI);
+        const updatedPitchDeg = updatedPitch * (180 / Math.PI);
+        const updatedYawDeg = updatedYaw * (180 / Math.PI);
 
-    x_rot = [updatedRollDeg, -updatedPitchDeg, updatedYawDeg]
+        x_rot = [updatedRollDeg, -updatedPitchDeg, updatedYawDeg]
 
-    console.log("roll: (" + Math.round(roll) + " | " + Math.round(x_rot[0]) + ") |  pitch: (" + Math.round(pitch) + " | " +  Math.round(x_rot[1]) + ") | yaw: (" + Math.round(yaw) + " | " + Math.round(x_rot[2]) + ")");
-
-
-    if (name != null){
-    if (name.includes("Player")){
-      
-      return (
-      coordinate && (
-        <>
-        <a-entity obj-model="obj: #gun-obj;" position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
-        <a-entity key={key_x} mixin={mixin_x} position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
-      </>)
-      );}
+          return (
+          coordinate && (
+            <>
+            <a-entity obj-model="obj: #gun-obj;" position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
+            <a-entity key={key_x} mixin={mixin_x} position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
+          </>)
+          );
+        
+      }
     }
   });
 
