@@ -118,8 +118,8 @@ const ShootLines = ({ coordinates, mixin, rotation, name }) =>
         const object3D = new THREE.Object3D();
 
         // Convert roll, pitch, and yaw to a quaternion
-      const quaternion = new THREE.Quaternion();
-      quaternion.setFromEuler(new THREE.Euler(toRadians(pitch), toRadians(yaw), toRadians(roll), 'ZYX'));
+        const quaternion = new THREE.Quaternion();
+        quaternion.setFromEuler(new THREE.Euler(toRadians(pitch), toRadians(yaw), toRadians(roll), 'ZYX'));
 
       // Set the object's initial quaternion
         object3D.quaternion.copy(quaternion);
