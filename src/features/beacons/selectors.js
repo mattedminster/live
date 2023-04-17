@@ -42,7 +42,7 @@ const getGPSToThreeJSTransformation = createSelector(
       const result = transformation.fromLonLatAgl([
         coordinate.lon,
         coordinate.lat,
-        coordinate.agl,
+        coordinate.amsl,
       ]);
 
       if (flipY) {
@@ -72,7 +72,7 @@ export const getBeaconGPSPositions = createSelector(
 
       for (const [key, value] of Object.entries(beacons.byId)) {
         if (value.position != null){
-        const coordinate = {lon: value.position.lon, lat: value.position.lat, agl: value.position.agl};
+        const coordinate = {lon: value.position.lon, lat: value.position.lat, amsl: value.position.amsl};
         result.push(coordinate);
         }
       }

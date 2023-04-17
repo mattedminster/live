@@ -42,7 +42,7 @@ const getUpdatePositionFromGPSCoordinatesFunction = createSelector(
         result,
         coordinate.lon,
         coordinate.lat,
-        coordinate.agl
+        coordinate.amsl
       );
     }
   }
