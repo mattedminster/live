@@ -27,9 +27,10 @@ const grounds = {
   },
   indoorRL: {
     ground: 'flat',
-    groundColor: '#0000ff',
+    groundColor: '#7CB68E',
     groundColor2: '#666',
     groundTexture: 'checkerboard',
+    playArea: 1.6,
   },
 };
 
@@ -70,11 +71,11 @@ const environments = {
   },
   'indoor-rl': {
     preset: 'default',
-    fog: 0.2,
+    fog: 0,
     gridColor: '#0000ff',
     skyType: 'gradient',
-    skyColor: '#eceff1',
-    horizonColor: '#fed',
+    skyColor: '#000',
+    horizonColor: '#222',
     ...grounds.indoorRL,
   },
 };
