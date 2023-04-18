@@ -148,6 +148,18 @@ const ThreeDViewTab = (props) => (
       />
 
       <FormControlLabel
+        label='Show AGL Grid'
+        control={
+          <Checkbox
+            checked={props.showAGLgrid}
+            name='showAGLgrid'
+            onChange={props.onCheckboxToggled}
+          />
+        }
+      />
+
+
+      <FormControlLabel
         label='Show shoot lines'
         control={
           <Checkbox

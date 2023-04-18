@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import CoordinateSystemAxes from './CoordinateSystemAxes';
 import HomePositionMarkers from './HomePositionMarkers';
 import ShootLineMarkers from './ShootLineMarkers';
+import AGLgridMarker from './AGLgridMarker';
 import BeaconPositionMarkers from './BeaconPositionMarkers';
 import LandingPositionMarkers from './LandingPositionMarkers';
 import Room from './Room';
@@ -61,6 +62,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
     scenery,
     showAxes,
     showBeaconPositions,
+    showAGLgrid,
     showShootLines,
     showHomePositions,
     showLandingPositions,
@@ -160,6 +162,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
           />
         )}
         {showShootLines && <ShootLineMarkers />}
+        {showAGLgrid && <AGLgridMarker />}
         {showBeaconPositions && <BeaconPositionMarkers />}
         {showHomePositions && <HomePositionMarkers />}
         {showLandingPositions && <LandingPositionMarkers />}
@@ -190,6 +193,7 @@ ThreeDView.propTypes = {
   showAxes: PropTypes.bool,
   showHomePositions: PropTypes.bool,
   showShootLines: PropTypes.bool,
+  showAGLgrid: PropTypes.bool,
   showBeaconPositions: PropTypes.bool,
   showLandingPositions: PropTypes.bool,
   showStatistics: PropTypes.bool,
