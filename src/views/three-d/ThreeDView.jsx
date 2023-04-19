@@ -129,7 +129,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
         />
         <a-mixin
           id="shoot-line-x"
-          meshline={`lineWidth: 5; path: 0 0 0, 50 0 0; color: red;`}
+          meshline={`lineWidth: 40; path: 0 0 0, 50 0 0; color: red;`}
         />
         <a-mixin
           id="shoot-line-y"
