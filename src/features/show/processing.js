@@ -97,11 +97,12 @@ function createZIPResolver(zip) {
         throw new Error(`unsupported protocol: ${url.protocol}`);
       }
 
-      await idle();
-
+      //await idle(); Matt commented this out to fix the loading issues but this might be more related to the idle sessions on the browser not triggering? This could be a larger issue
       // TODO: use strings only for JSON and YAML files; use some binary
       // encoding for embedded assets
-      return zip.file(url.pathname).async('string');
+      const zipFile = zip.file(url.pathname).async('string');
+
+      return zipFile;
     },
   };
 }
@@ -115,9 +116,11 @@ function createZIPResolver(zip) {
 export async function loadShowFromFile(file) {
   const zip = await JSZip.loadAsync(file);
 
+
   // Create a JSON reference to the main show specification file and then
   // let the JSONRef parser handle the rest
   const root = { $ref: 'zip:show.json' };
+
 
   // Load the main show specification file and parse it as JSON
   // const showSpecAsString = await zip.file('show.json').async('string');

@@ -50,15 +50,10 @@ function getCameraController() {
 }
 
 function handleViewRotationTowards(controller, point) {
-  //console.log("point: ", point);
   const target = { lookAt: skybrushToThreeJsPosition(point) };
-  
+
   const cameraObj = document.querySelector('a-camera');
-  //console.log("typeof target: ", typeof cameraObj);
-  //console.log("target: ", target)
   const zTarget = point[2];
-  //console.log("zTarget: ", zTarget);
-  
 
   cameraObj.setAttribute('position', { x: 0, y: zTarget, z: 0 }); 
   controller.startTransitionTo(target);
