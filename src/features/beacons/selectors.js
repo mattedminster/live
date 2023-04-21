@@ -74,6 +74,9 @@ export const getBeaconGPSPositions = createSelector(
         if (value.position != null){
         const coordinate = {lon: value.position.lon, lat: value.position.lat, amsl: value.position.amsl};
         result.push(coordinate);
+        }else{
+          const coordinate = {lon: 0, lat: 0, amsl: 0};
+          result.push(coordinate);
         }
       }
 
@@ -89,7 +92,7 @@ export const getBeaconAttitude = createSelector(
      const result = [];
 
      for (const [key, value] of Object.entries(beacons.byId)) {
-      //console.log(value.attitude);
+       //console.log(value.attitude);
        const attitude = value.attitude;
        result.push(attitude);
      }
@@ -107,7 +110,7 @@ export const getBeaconAttitude = createSelector(
 
 
    for (const [key, value] of Object.entries(beacons.byId)) {
-    //console.log(value.name)
+    //console.log("querying name: " + value.name)
      const name = value.name;
      result.push(name); 
    }

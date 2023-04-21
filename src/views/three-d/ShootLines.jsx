@@ -96,9 +96,14 @@ function multiplyMatrices(A, B) {
  * given Three.JS coordinates.
  */
 const ShootLines = ({ coordinates, mixin, rotation, name }) =>
-  coordinates.map((coordinate, index) => {
+
+coordinates.map((coordinate, index) => {
+  //console.log("coordinates: " + coordinates + " rotation: " + rotation + " name: " + name);  
     var player_name = name[index];
     var player_rotation = rotation[index];
+    // console.log("player_name: " + player_name);
+    // console.log("player_rotation: " + player_rotation);
+    // console.log("player cord: " + coordinate);
     if (player_name != null) {
       if(rotation != null && player_name.includes("Player")){
         const mixin_x = `${mixin}-x`;
