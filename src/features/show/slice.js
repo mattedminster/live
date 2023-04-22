@@ -18,6 +18,7 @@ import { StartMethod } from './enums';
 
 import { noPayload } from '~/utils/redux';
 
+import { rotateViewToDrones } from '~/features/three-d/actions';
 const { actions, reducer } = createSlice({
   name: 'show',
 
@@ -318,6 +319,7 @@ const { actions, reducer } = createSlice({
       // We only accept 'true' for authorization to be on the safe side, not
       // just any truthy value
       state.start.authorized = action.payload === true;
+      
     },
 
     setShowSettingsSynchronizationStatus(state, action) {

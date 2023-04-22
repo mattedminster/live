@@ -67,6 +67,8 @@ import {
   _setOutdoorShowAltitudeReference,
 } from './slice';
 
+import { rotateViewToDrones } from '~/features/three-d/actions';
+
 /**
  * Thunk that approves the takeoff area arrangement with the current timestamp.
  */
@@ -352,6 +354,7 @@ export const loadShowFromUrl = createShowLoaderThunkFactory(
 function processShowInJSONFormatAndDispatchActions(spec, dispatch) {
   const drones = get(spec, 'swarm.drones');
   dispatch(setMappingLength(drones.length));
+  dispatch(rotateViewToDrones(drones));
 
   const environment = get(spec, 'environment');
   if (environment.type) {
