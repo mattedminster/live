@@ -143,7 +143,7 @@ const App = ({ onFirstRender }) => (
       <AppHotkeys />
 
       <div style={rootStyle}>
-        <Header perspectives={perspectives} workbench={workbench} />
+        <Header perspectives={perspectives} workbench={workbench}/>
         <WorkbenchContainer />
         {config.ribbon && config.ribbon.label && (
           <CornerRibbon {...config.ribbon} />
