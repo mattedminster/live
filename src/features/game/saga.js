@@ -9,6 +9,7 @@ import {
   getShowClockReference,
   getShowStartMethod,
   getShowStartTime,
+  getShowName,
   isShowAuthorizedToStartLocally,
 } from './selectors';
 import {
@@ -30,14 +31,16 @@ import { createActionListenerSaga } from '~/utils/sagas';
  */
 function* pullSettingsFromServer() {
   const config = yield call(messageHub.query.getShowConfiguration);
-  const { authorized, clock, time, method, uavIds } = get(config, 'start');
+  const { authorized, name, clock, time, method, uavIds } = get(config, 'start');
 
   if (
     (isNumber(time) || isNil(time)) &&
     isString(method) &&
+    isString(name) &&
     Array.isArray(uavIds)
   ) {
     yield put(setShowAuthorization(Boolean(authorized)));
+    yield put(setName(name));
     yield put(setStartMethod(method));
     yield put(setUAVIdsToStartAutomatically(reject(uavIds || [], isNil)));
     yield put(setStartTime({ clock, time }));
@@ -52,6 +55,7 @@ function* pullSettingsFromServer() {
 function* pushSettingsToServer() {
   const authorized = yield select(isShowAuthorizedToStartLocally);
   const clock = yield select(getShowClockReference);
+  const name = yield select(getShowName);
   const mapping = yield select(getMissionMapping);
   const method = yield select(getShowStartMethod);
   const time = yield select(getShowStartTime);
@@ -60,6 +64,7 @@ function* pushSettingsToServer() {
   yield call(messageHub.execute.setShowConfiguration, {
     start: {
       authorized,
+      name,
       clock,
       time: isNil(time) ? null : time,
       method,

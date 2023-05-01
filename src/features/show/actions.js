@@ -47,6 +47,7 @@ import {
   getLastPointsOfTrajectoriesInWorldCoordinates,
   getOutdoorShowOrigin,
   getRoomCorners,
+  getShowTitle,
   getShowOrientation,
   getOutdoorShowAltitudeReference,
   getOutdoorShowToWorldCoordinateSystemTransformationObject,
@@ -57,6 +58,7 @@ import {
   loadingProgress,
   revokeTakeoffAreaApproval,
   setEnvironmentType,
+  setName,
   setLastLoadingAttemptFailed,
   setOutdoorShowOrigin,
   setOutdoorShowOrientation,
@@ -353,6 +355,7 @@ export const loadShowFromUrl = createShowLoaderThunkFactory(
  */
 function processShowInJSONFormatAndDispatchActions(spec, dispatch) {
   const drones = get(spec, 'swarm.drones');
+  console.log("spec", spec);
   dispatch(setMappingLength(drones.length));
   dispatch(rotateViewToDrones(drones));
 
@@ -367,6 +370,11 @@ function processShowInJSONFormatAndDispatchActions(spec, dispatch) {
   if (environment.type === 'indoor') {
     dispatch(setOutdoorShowOrigin(null));
   }
+
+  const name = spec.meta.title;
+  dispatch(setName(name));
+
+
 
   // Update the takeoff and landing positions and the takeoff headings in the
   // mission from the loaded show settings

@@ -95,6 +95,8 @@ const { actions, reducer } = createSlice({
       // falsy
       utcTime: null,
 
+      name: null,
+
       // start time of the show in the related reference clock, in seconds
       timeOnClock: null,
 
@@ -336,6 +338,10 @@ const { actions, reducer } = createSlice({
       }
     },
 
+    setName(state, action){
+      state.start.name = action.payload;
+    },
+
     setStartTime(state, action) {
       const { payload } = action;
       const { clock, time: timeFromPayload } = payload || {};
@@ -415,6 +421,7 @@ export const {
   setShowAuthorization,
   setShowSettingsSynchronizationStatus,
   setStartMethod,
+  setName,
   setStartTime,
   setUAVIdsToStartAutomatically,
   signOffOnManualPreflightChecksAt,

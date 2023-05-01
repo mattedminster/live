@@ -656,6 +656,10 @@ export const getShowMetadata = createSelector(
 export const getShowStartMethod = (state) => state.show.start.method;
 
 /**
+ * Returns the start method of the show.
+ */
+export const getShowName = (state) => state.show.start.name;
+/**
  * Returns the start time of the show. The start time is returned as the number
  * of seconds elapsed from the epoch of the associated show clock, or since the
  * UNIX epoch if there is no associated show clock. Returns undefined if no

@@ -365,6 +365,7 @@ function processShowInJSONFormatAndDispatchActions(spec, dispatch) {
     dispatch(setOutdoorShowOrigin(null));
   }
 
+
   // Update the takeoff and landing positions and the takeoff headings in the
   // mission from the loaded show settings
   dispatch(setupMissionFromShow());

@@ -334,6 +334,13 @@ const { actions, reducer } = createSlice({
       }
     },
 
+    setName(state, name){
+
+      
+      state.start.name = name;
+
+    },
+
     setStartTime(state, action) {
       const { payload } = action;
       const { clock, time: timeFromPayload } = payload || {};

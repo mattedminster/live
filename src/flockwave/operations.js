@@ -102,10 +102,13 @@ export async function setRTKCorrectionsSource(hub, presetId) {
  * Sets the configuration of the current drone show on the server.
  */
 export async function setShowConfiguration(hub, config) {
+  console.log("sending config: ", config);
   const response = await hub.sendMessage({
     type: 'SHOW-SETCFG',
     configuration: config,
   });
+
+  console.log('response', response);
 
   if (response.body.type !== 'ACK-ACK') {
     throw new Error('Failed to set new show configuration on the server');

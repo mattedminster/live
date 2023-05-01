@@ -9,6 +9,7 @@ import {
   getShowClockReference,
   getShowStartMethod,
   getShowStartTime,
+  getShowName,
   isShowAuthorizedToStartLocally,
 } from './selectors';
 import {
@@ -52,6 +53,7 @@ function* pullSettingsFromServer() {
 function* pushSettingsToServer() {
   const authorized = yield select(isShowAuthorizedToStartLocally);
   const clock = yield select(getShowClockReference);
+  const name = yield select(getShowName);
   const mapping = yield select(getMissionMapping);
   const method = yield select(getShowStartMethod);
   const time = yield select(getShowStartTime);
@@ -61,6 +63,7 @@ function* pushSettingsToServer() {
     start: {
       authorized,
       clock,
+      name,
       time: isNil(time) ? null : time,
       method,
       uavIds: uavIdsToStartAutomatically,
