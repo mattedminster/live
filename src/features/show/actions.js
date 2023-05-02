@@ -383,7 +383,7 @@ function processShowInJSONFormatAndDispatchActions(spec, dispatch) {
 
   const name = spec.meta.title;
 
-  dispatch(setName("level_one"));
+  dispatch(setName(name));
 
 
 
