@@ -659,8 +659,10 @@ export const getShowStartMethod = (state) => state.show.start.method;
 /**
  * Returns the show name
  */
-export const getShowName = (state) => state.show.start.name;
-
+export const getShowName = (state) => {
+  //return state.show.sourceUrl;
+  return state.show.start.name;
+}
 
 /**
  * Returns the start time of the show. The start time is returned as the number

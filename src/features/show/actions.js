@@ -102,6 +102,16 @@ export const setupMissionFromShow = () => (dispatch, getState) => {
   dispatch(updateTakeoffHeadings(orientation));
 };
 
+
+export const setGameName = () => (dispatch, getState) => {
+  const state = getState();
+
+ 
+
+  dispatch(setName(state));
+
+};
+
 export const removeShowFeatures = () => (dispatch, getState) => {
   const state = getState();
 
@@ -372,7 +382,8 @@ function processShowInJSONFormatAndDispatchActions(spec, dispatch) {
   }
 
   const name = spec.meta.title;
-  dispatch(setName(name));
+
+  dispatch(setName("level_one"));
 
 
 
