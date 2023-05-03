@@ -375,7 +375,7 @@ class MapViewPresentation extends React.Component {
   };
 
   static defaultProps = {
-    center: [19.061951, 47.47334],
+    center: [-70.967055, 43.042423],
     zoom: 17,
   };
 
