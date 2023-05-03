@@ -8,20 +8,33 @@ const commonLayouts = {
       type: 'columns',
       contents: [
         {
-          type: 'stack',
+          type: 'rows',
           contents: [
-            { type: 'panel', component: 'map', id: 'map' },
-            { type: 'panel', component: 'uav-list', id: 'uavs' },
-            { type: 'panel', component: 'three-d-view', id: 'threeDView' },
+            {
+              type: 'stack',
+              contents: [
+                { type: 'panel', component: 'three-d-view', id: 'threeDView' },
+              ],
+              height: 70,
+            },
+            {
+              type: 'stack',
+              contents: [
+                { type: 'panel', component: 'uav-list', id: 'uavs' },
+              ],
+            },
           ],
+          width: 38,
         },
+      
         {
           type: 'rows',
           contents: [
             {
               type: 'stack',
               contents: [
-                { type: 'panel', component: 'lcd-clock-panel', id: 'clocks' },
+                { type: 'panel', component: 'map', id: 'map' },
+                { type: 'panel', component: 'beacon-list', id: 'beacon-list' },
                 {
                   type: 'panel',
                   component: 'saved-location-list',
@@ -29,12 +42,11 @@ const commonLayouts = {
                 },
                 { type: 'panel', component: 'layer-list', id: 'layers' },
               ],
-              height: 25,
+              height: 50,
             },
             {
               type: 'stack',
               contents: [
-                { type: 'panel', component: 'show-control', id: 'show' },
                 { type: 'panel', component: 'game-control', id: 'game' },
                 { type: 'panel', component: 'light-control', id: 'lights' },
               ],

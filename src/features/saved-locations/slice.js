@@ -20,32 +20,22 @@ const { actions, reducer } = createSlice({
   initialState: {
     // byId is a map from saved location ID to the location itself
     byId: {
-      fahegy: {
-        id: 'fahegy',
-        name: 'Farkashegy Airfield',
+      overlook: {
+        id: 'overlook',
+        name: 'Overlook',
         center: {
-          lon: 18.915125,
-          lat: 47.486305,
-        },
-        rotation: 59,
-        zoom: 17,
-        notes: '',
-      },
-      elte: {
-        id: 'elte',
-        name: 'ELTE Garden',
-        center: {
-          lon: 19.061951,
-          lat: 47.47334,
+          lon: -70.967055,
+          lat: 43.042423,
         },
         rotation: 0,
-        zoom: 17,
+        zoom: 20,
         notes: '',
       },
+      
     },
 
     // Order defines the preferred ordering of locations on the UI
-    order: ['fahegy', 'elte'],
+    order: ['overlook'],
   },
 
   reducers: {

@@ -78,6 +78,22 @@ const environments = {
     horizonColor: '#222',
     ...grounds.indoorRL,
   },
+  'outdoor-rl': {
+    preset: 'default',
+    fog: 0.2,
+    gridColor: '#fff',
+    skyType: 'atmosphere',
+    skyColor: '#88c',
+    ...grounds.default,
+  },
+  'outdoor-rl-dark': {
+    preset: 'starry',
+    fog: 0.2,
+    gridColor: '#39d2f2',
+    skyType: 'atmosphere',
+    skyColor: '#88c',
+    ...grounds.default,
+  },
 };
 
 var max_amsl = 0;
@@ -96,8 +112,8 @@ const AGLgrid = ({ coordinates }) =>
         {/* Move the floor slightly down to ensure that the coordinate axes are nicely visible */}
         <a-entity
           environment={objectToString({
-            ...(environments['indoor-rl']),
-            grid: '1x1',
+            ...(environments['outdoor-rl-dark']),
+
           })}
         />
       </a-entity>

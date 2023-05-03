@@ -41,7 +41,7 @@ const { actions, reducer } = createSlice({
       // Whether to show the scale on the map
       showScaleLine: true,
       // Which UI theme to use (choose from OS, use light mode or use dark mode)
-      theme: 'auto',
+      theme: 'dark',
       // Whether to hide inactive segments on dark mode LCD clocks
       hideInactiveSegmentsOnDarkLCD: false,
       // Filters applied to the UAV list
@@ -60,7 +60,7 @@ const { actions, reducer } = createSlice({
 
     threeD: {
       // Scenery to use in the 3D view
-      scenery: 'auto',
+      scenery: 'outdoor',
 
       // Lighting conditions to use in the 3D view
       lighting: 'dark',
@@ -71,7 +71,7 @@ const { actions, reducer } = createSlice({
       grid: 'none',
 
       // Rendering quality of the 3D view (low, medium or high)
-      quality: 'medium',
+      quality: 'high',
 
       // Whether to show the coordinate system axes
       showAxes: false,
@@ -80,7 +80,7 @@ const { actions, reducer } = createSlice({
       showHomePositions: false,
 
       // Whether to show the beacons positions
-      showBeaconPositions: true,
+      showBeaconPositions: false,
 
       showShootLines: true,
 
