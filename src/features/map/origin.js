@@ -12,8 +12,8 @@ import { createSlice } from '@reduxjs/toolkit';
  * degree heading points towards the heading given in the `angle` property.
  */
 const initialState = {
-  position: [18.915125, 47.486305], // Sensible default: Farkashegy Airfield
-  angle: '59',
+  position: [43.0424230, -70.9670559], // Sensible default: Farkashegy Airfield
+  angle: '0',
   type: 'nwu',
 };
 

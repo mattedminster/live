@@ -26,9 +26,9 @@ const { actions, reducer } = createSlice({
    * degree heading points towards the heading given in the `angle` property.
    */
   initialState: {
-    position: [18.915125, 47.486305], // Sensible default: Farkashegy Airfield
+    position: [-70.967055, 43.042423], // Sensible default: Overlook
     angle: '0',
-    zoom: 17,
+    zoom: 20,
   },
 
   reducers: {
