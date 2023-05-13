@@ -13,6 +13,7 @@ import AFrame from '../aframe';
 import { createSelectionHandlerThunk } from '~/components/helpers/lists';
 import { setSelectedUAVIds } from '~/features/uavs/actions';
 import { getSelectedUAVIds } from '~/features/uavs/selectors';
+import {getBeaconsInOrder} from '~/features/beacons/selectors';
 import { setFeatureIdForTooltip } from '~/features/session/slice';
 import { getPreferredDroneRadius } from '~/features/three-d/selectors';
 import flock from '~/flock';
@@ -20,6 +21,7 @@ import { convertRGB565ToHex } from '~/flockwave/parsing';
 import { uavIdToGlobalId } from '~/model/identifiers';
 import { getFlatEarthCoordinateTransformer } from '~/selectors/map';
 import store from '~/store';
+import { be } from 'date-fns/locale';
 
 const { THREE } = AFrame;
 
@@ -230,8 +232,23 @@ AFrame.registerComponent('drone-flock', {
     }
 
     const { id } = uav;
+    
+    var beacons = getBeaconsInOrder(store.getState());
 
-    if (id && id.length > 0) {
+    
+    let isBeacon = false;
+    beacons.forEach(item => {
+      if (item.id.includes(id)) {
+        //console.log(`"${id}" is a substring of the id: ${item.id}`);
+        isBeacon = true;
+      } else {
+        //console.log(`"${id}" is not a substring of the id: ${item.id}`);
+      }
+    });
+
+
+    if (id && id.length > 0 && !isBeacon) {
+      console.log("creating new entity: ", id);
       const entity = this.system.createNewUAVEntity();
 
       if (entity) {
