@@ -230,22 +230,21 @@ AFrame.registerComponent('drone-flock', {
     if (existingEntity) {
       return existingEntity;
     }
-
+  
     const { id } = uav;
-    
-    var beacons = getBeaconsInOrder(store.getState());
-
-    
+  
+    const beaconIds = [126, 127, 128, 129]; // Hardcoded beacon IDs TODO: make this dynamic will break things if we change the player_ids of the players or want more than 4 players
+  
     let isBeacon = false;
-    beacons.forEach(item => {
-      if (item.id.includes(id)) {
-        //console.log(`"${id}" is a substring of the id: ${item.id}`);
+    beaconIds.forEach(beaconId => {
+      if (beaconId.toString().includes(id)) {
+        // console.log(`"${id}" is a substring of the beacon ID: ${beaconId}`);
         isBeacon = true;
       } else {
-        //console.log(`"${id}" is not a substring of the id: ${item.id}`);
+        // console.log(`"${id}" is not a substring of the beacon ID: ${beaconId}`);
       }
     });
-
+  
 
     if (id && id.length > 0 && !isBeacon) {
       console.log("creating new entity: ", id);
