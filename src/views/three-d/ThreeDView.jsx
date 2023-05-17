@@ -28,7 +28,7 @@ import { isShowIndoor } from '~/features/show/selectors';
 import { isMapCoordinateSystemLeftHanded } from '~/selectors/map';
 
 import glowImage from '~/../assets/img/sphere-glow-hollow.png';
-import obj from '~/../assets/models/shotgun_ned.obj';
+import obj from '~/../assets/models/rl_shotgun_ned.obj';
 import mtl from '~/../assets/models/shotgun.mtl';
 const images = {
   glow: glowImage,
@@ -107,7 +107,7 @@ const ThreeDView = React.forwardRef((props, ref) => {
       {...extraSceneProps}
     >
       <a-assets>
-      <a-asset-item id="gun-obj" src="~/../assets/models/shotgun_ned.obj"></a-asset-item>
+      <a-asset-item id="gun-obj" src="~/../assets/models/rl_shotgun_ned.obj"></a-asset-item>
       <a-asset-item id="gun-mtl" src="~/../assets/models/shotgun.mtl"></a-asset-item>
       
 
