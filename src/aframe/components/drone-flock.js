@@ -114,6 +114,7 @@ AFrame.registerSystem('drone-flock', {
   },
 
   updateEntityFromUAV(entity, uav) {
+    try{
     if (uav.hasLocalPosition) {
       this._updatePositionFromLocalCoordinates(
         uav.localPosition,
@@ -144,6 +145,9 @@ AFrame.registerSystem('drone-flock', {
     if (glowMesh && glowMesh.material) {
       glowMesh.material.color.setHex(color);
     }
+  }catch(e){
+    console.log("error in updateEntityFromUAV: ", e);
+  }
   },
 
   updateEntityGeometry(entity) {
