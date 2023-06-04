@@ -4,6 +4,11 @@ import { globalIdToBeaconId } from '~/model/identifiers';
 import { selectionForSubset } from '~/selectors/selection';
 import { selectOrdered } from '~/utils/collections';
 import { getFlatEarthCoordinateTransformer } from '~/selectors/map';
+import sum from 'lodash-es/sum';
+
+import {
+  getActiveUAVIds,
+} from '~/features/uavs/selectors';
 
 import isNil from 'lodash-es/isNil';
 
@@ -101,6 +106,30 @@ export const getBeaconAttitude = createSelector(
    },
   
  );
+
+ export const getAvgAltitude = createSelector(
+  (state) => state.uavs, (uavs) => {
+
+    //console.log("Number of objects in uavs.byId: " + Object.keys(uavs.byId).length);
+    //hardcoding for now so once we start using more than 125 drones we will need to fix..
+    const altitudes = [];
+    for (const [uav, data] of Object.entries(uavs.byId)) {
+      
+      const intUav = parseInt(uav);
+      if (intUav > 125) {
+        altitudes.push(data.position.amsl);
+      }
+      
+    }
+
+    if (altitudes.length > 0) {
+      const avgAltitude = sum(altitudes) / altitudes.length;
+      return avgAltitude;
+    }
+    return 0;
+
+
+  });
 
  export const getBeaconName = createSelector(
   (state) => state.beacons,

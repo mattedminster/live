@@ -7,6 +7,8 @@ import Colors from '~/components/colors';
 
 import { objectToString } from '~/aframe/utils';
 
+import { skybrushToThreeJsPosition } from '@skybrush/aframe-components/lib/spatial';
+
 const grounds = {
   /* Minecraft-style ground texture (green) */
   default: {
@@ -17,6 +19,15 @@ const grounds = {
     /* make the "play area" larger so we have more space to fly around without
      * bumping into hills */
     playArea: 1.6,
+  },
+  rl_default: {
+    groundColor: '#8eb971',
+    groundColor2: '#507a32',
+    groundTexture: 'walkernoise',
+    groundYScale: 24,
+    /* make the "play area" larger so we have more space to fly around without
+     * bumping into hills */
+    playArea: 3.6,
   },
   /* Checkerboard indoor texture */
   indoor: {
@@ -86,26 +97,30 @@ const environments = {
     skyColor: '#88c',
     ...grounds.default,
   },
-  'outdoor-rl-dark': {
-    preset: 'starry',
+  'outdoor-rl-standout': {
     fog: 0.2,
     gridColor: '#39d2f2',
-    skyType: 'atmosphere',
-    skyColor: '#88c',
     ...grounds.default,
+  },
+  'outdoor-rl-dark': {
+    preset: 'starry',
+    fog: 0.0,
+    gridColor: '#39d2f2',
+    skyType: 'atmosphere',
+    ...grounds.rl_default,
   },
 };
 
-var max_amsl = 0;
 
-const AGLgrid = ({ coordinates }) =>
+
+const AGLgrid = ({ coordinates, mixin, rotation, name, altitude }) =>
   coordinates.map((coordinate, index) => {
-    const cur_amsl = coordinate[2] - 10;
-    if (cur_amsl > max_amsl) {
-      max_amsl = cur_amsl;
-    }
+    const amsl = altitude - 1.4;
+  
 
-    let pos = [0, 0, max_amsl]
+
+    let pos = [0, 0, amsl]
+    
     const scale = .5;
     return (
       <a-entity position={pos.join(' ')} rotation="90 0 0" scale={`${scale} ${scale} ${scale}`}>

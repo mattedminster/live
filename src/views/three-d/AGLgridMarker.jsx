@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 //import { getHomePositionsInMissionForThreeDView } from '~/features/three-d/selectors';
-import {getBeaconAttitude, getBeaconName, getBeaconForThreeDView} from '~/features/beacons/selectors';
+import {getBeaconAttitude, getBeaconName, getBeaconForThreeDView, getAvgAltitude} from '~/features/beacons/selectors';
 
 import AGLgrid from './AGLgrid';
 
@@ -13,6 +13,7 @@ export default connect(
     mixin: 'shoot-line',
     rotation: getBeaconAttitude(state),
     name: getBeaconName(state),
+    altitude: getAvgAltitude(state),
   }),
   // mapDispatchToProps
   {}

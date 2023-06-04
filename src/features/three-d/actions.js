@@ -7,6 +7,8 @@ import { rotateViewTowards } from './slice';
 
 export { resetZoom } from './slice';
 
+
+
 const { THREE } = AFrame;
 
 export const rotateViewToDrones = () => (dispatch, getState) => {
@@ -39,6 +41,13 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
 
   if (numberOfVisibleEntities > 0) {
     center.divideScalar(numberOfVisibleEntities);
+
+    //hard code some mods that work good for us
+    center.x = center.x + 0;
+    center.y = center.y + 0;
+    center.z = center.z;
+
+
     dispatch(rotateViewTowards(center.toArray()));
   }
 };
