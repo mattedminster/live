@@ -69,4 +69,4 @@ export const getLandingPositionsInMissionForThreeDView = createSelector(
  * 3D view.
  */
 export const getPreferredDroneRadius = (state) =>
-  isShowIndoor(state) ? 0.2 : 0.5;
+  isShowIndoor(state) ? 0.2 : 0.355;
