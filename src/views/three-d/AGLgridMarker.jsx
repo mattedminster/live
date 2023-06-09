@@ -14,6 +14,7 @@ export default connect(
     rotation: getBeaconAttitude(state),
     name: getBeaconName(state),
     altitude: getAvgAltitude(state),
+    cameraView: state.threeD.cameraView,
   }),
   // mapDispatchToProps
   {}

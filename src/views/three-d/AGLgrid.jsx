@@ -2,6 +2,7 @@ import { eu } from 'date-fns/locale';
 import PropTypes from 'prop-types';
 import React from 'react';
 import * as THREE from 'three';
+import { setCameraPose } from '~/features/three-d/slice';
 
 import Colors from '~/components/colors';
 
@@ -113,14 +114,13 @@ const environments = {
 
 
 
-const AGLgrid = ({ coordinates, mixin, rotation, name, altitude }) =>
+const AGLgrid = ({ coordinates, mixin, rotation, name, altitude, cameraView }) =>
   coordinates.map((coordinate, index) => {
     const amsl = altitude - 1.4;
   
 
+    let pos = [0, 0, amsl];
 
-    let pos = [0, 0, amsl]
-    
     const scale = .5;
     return (
       <a-entity position={pos.join(' ')} rotation="90 0 0" scale={`${scale} ${scale} ${scale}`}>

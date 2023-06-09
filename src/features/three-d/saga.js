@@ -53,7 +53,7 @@ function handleViewRotationTowards(controller, point) {
   const target = { lookAt: skybrushToThreeJsPosition(point) };
 
   const cameraObj = document.querySelector('a-camera');
-  const zTarget = point[2] + 10;
+  const zTarget = point[2] + 15;
 
   cameraObj.setAttribute('position', { x: point[0], y: zTarget, z: point[1] }); 
   controller.startTransitionTo(target);

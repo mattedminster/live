@@ -13,6 +13,7 @@ export default connect(
     mixin: 'shoot-line',
     rotation: getBeaconAttitude(state),
     name: getBeaconName(state),
+    cameraView: state.threeD.cameraView,
   }),
   // mapDispatchToProps
   {}

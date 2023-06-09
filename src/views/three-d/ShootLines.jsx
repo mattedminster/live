@@ -2,7 +2,7 @@ import { eu } from 'date-fns/locale';
 import PropTypes from 'prop-types';
 import React from 'react';
 import * as THREE from 'three';
-
+import { setCameraPose } from '~/features/three-d/slice';
 import Colors from '~/components/colors';
 
 // Function to convert rotation matrix to roll, pitch, yaw angles (in radians)
@@ -95,13 +95,13 @@ function multiplyMatrices(A, B) {
  * Presentational component that renders a set of beacons in the scene at the
  * given Three.JS coordinates.
  */
-const ShootLines = ({ coordinates, mixin, rotation, name }) =>
+const ShootLines = ({ coordinates, mixin, rotation, name, cameraView }) =>
 
 coordinates.map((coordinate, index) => {
   //console.log("coordinates: " + coordinates + " rotation: " + rotation + " name: " + name);  
     var player_name = name[index];
     var player_rotation = rotation[index];
-    // console.log("player_name: " + player_name);
+    
     // console.log("player_rotation: " + player_rotation);
     // console.log("player cord: " + coordinate);
     if (player_name != null) {
@@ -156,6 +156,18 @@ coordinates.map((coordinate, index) => {
         const updatedYawDeg = updatedYaw * (180 / Math.PI);
 
         x_rot = [updatedRollDeg, -updatedPitchDeg, updatedYawDeg]
+
+        if (player_name != null) {
+          if (player_name.includes(cameraView)) {
+            console.log("player_name: " + player_name);
+            //z is x, y is z
+            const cameraObj = document.querySelector('a-camera');
+            cameraObj.setAttribute('position', { x: -coordinate[1], y: coordinate[2]+.2, z: -coordinate[0] }); 
+            //cameraObj.setAttribute('rotation', { x: -x_rot[1], y: -x_rot[2], z: (180 - x_rot[0]) }); 
+            cameraObj.setAttribute('rotation', { x: x_rot[1], y: -x_rot[2], z: 0 }); 
+            
+          };
+        };
 
           return (
           coordinate && (

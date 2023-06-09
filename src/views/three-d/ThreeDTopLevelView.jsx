@@ -20,6 +20,8 @@ import AlertTitle from '@material-ui/lab/AlertTitle';
 
 import { isThemeDark } from '@skybrush/app-theme-material-ui';
 
+import CameraViewButtonGroup from './CameraViewButtonGroup';
+
 import NavigationButtonGroup from './NavigationButtonGroup';
 import NavigationInstructions from './NavigationInstructions';
 import Overlay from './Overlay';
@@ -35,7 +37,9 @@ import { getLightingConditionsForThreeDView } from '~/features/settings/selector
 import { toggleLightingConditionsInThreeDView } from '~/features/settings/slice';
 import { resetZoom, rotateViewToDrones } from '~/features/three-d/actions';
 import { cameraRef } from '~/features/three-d/refs';
-import { setNavigationMode } from '~/features/three-d/slice';
+import { setNavigationMode,
+  setCameraView,
+} from '~/features/three-d/slice';
 import { isMapCoordinateSystemSpecified } from '~/selectors/map';
 
 const ThreeDView = loadable(() =>
@@ -65,9 +69,11 @@ const ThreeDTopLevelView = ({
   hasMapCoordinateSystem,
   lighting,
   navigation,
+  cameraView,
   onResetZoom,
   onRotateCameraTowardsDrones,
   onSetNavigationMode,
+  onCameraView,
   onShowSettings,
   onToggleLightingConditions,
 }) => {
@@ -94,6 +100,12 @@ const ThreeDTopLevelView = ({
               onResetZoom={onResetZoom}
               onRotateCameraTowardsDrones={onRotateCameraTowardsDrones}
             />
+            <CameraViewButtonGroup
+              cameraView={cameraView}
+              onChange={onCameraView}
+
+            />
+
             <ToolbarDivider orientation='vertical' />
             <NavigationInstructions mode={navigation.mode} />
             <DarkModeSwitch
@@ -137,12 +149,14 @@ const ThreeDTopLevelView = ({
 ThreeDTopLevelView.propTypes = {
   hasMapCoordinateSystem: PropTypes.bool,
   lighting: PropTypes.string,
+  cameraView: PropTypes.string,
   navigation: PropTypes.shape({
     mode: PropTypes.string,
     parameters: PropTypes.object,
   }),
   onResetZoom: PropTypes.func,
   onRotateCameraTowardsDrones: PropTypes.func,
+  onCameraView: PropTypes.func,
   onSetNavigationMode: PropTypes.func,
   onShowSettings: PropTypes.func,
   onToggleLightingConditions: PropTypes.func,
@@ -160,7 +174,7 @@ export default connect(
     onResetZoom: resetZoom,
     onRotateCameraTowardsDrones: rotateViewToDrones,
     onSetNavigationMode: setNavigationMode,
-
+    onCameraView: setCameraView,
     onShowSettings: () => (dispatch) => {
       dispatch(setAppSettingsDialogTab('display'));
       dispatch(showAppSettingsDialog());

@@ -15,6 +15,7 @@ const { actions, reducer } = createSlice({
 
     navigation: {
       mode: 'walk',
+      cameraView: 'birdseye',
       parameters: {},
     },
 
@@ -51,6 +52,22 @@ const { actions, reducer } = createSlice({
       state.camera.rotation = rotation;
     },
 
+    setCameraView(state, action) {
+      const { payload } = action;
+
+      if (typeof payload === 'string') {
+        state.cameraView = payload;
+
+      } else {
+        const { mode, parameters } = payload;
+
+        if (typeof mode === 'string' && typeof parameters === 'object') {
+          state.cameraView = mode;
+
+        }
+      }
+    },
+
     setNavigationMode(state, action) {
       const { payload } = action;
 
@@ -82,6 +99,7 @@ export const {
   notifySceneRemoval,
   resetZoom,
   rotateViewTowards,
+  setCameraView,
   setCameraPose,
   setNavigationMode,
   showTooltip,

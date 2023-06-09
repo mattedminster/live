@@ -186,6 +186,7 @@ ThreeDView.propTypes = {
   grid: PropTypes.string,
   isCoordinateSystemLeftHanded: PropTypes.bool,
   lighting: PropTypes.oneOf(['dark', 'light']),
+  cameraView: PropTypes.oneOf(['birdseye', '1']),
   navigation: PropTypes.shape({
     mode: PropTypes.oneOf(['walk', 'fly']),
     parameters: PropTypes.object,
