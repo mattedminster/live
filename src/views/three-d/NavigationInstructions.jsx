@@ -75,7 +75,7 @@ const NavigationInstructions = ({ mode }) => (
           justifyContent='center'
         >
           {instructionsByMode[mode] ||
-            'No instructions for this navigation mode'}
+            ''}
         </Box>
       </FadeAndSlide>
     </TransitionGroup>

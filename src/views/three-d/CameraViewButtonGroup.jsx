@@ -28,7 +28,7 @@ const CameraViewButtonGroup = ({
         value='birdseye'
         onClick={() => onChange('birdseye')}
       >
-        Birdseye
+        Explore
       </ToggleButton>
       <ToggleButton
         selected={cameraView === '1'}

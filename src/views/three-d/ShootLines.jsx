@@ -156,7 +156,7 @@ coordinates.map((coordinate, index) => {
         const updatedYawDeg = updatedYaw * (180 / Math.PI);
 
         x_rot = [updatedRollDeg, -updatedPitchDeg, updatedYawDeg]
-
+        let shootLine = [coordinate[0], coordinate[1], coordinate[2]+.1];
         if (player_name != null) {
           if (player_name.includes(cameraView)) {
             console.log("player_name: " + player_name);
@@ -164,7 +164,7 @@ coordinates.map((coordinate, index) => {
             const cameraObj = document.querySelector('a-camera');
             cameraObj.setAttribute('position', { x: -coordinate[1], y: coordinate[2]+.2, z: -coordinate[0] }); 
             //cameraObj.setAttribute('rotation', { x: -x_rot[1], y: -x_rot[2], z: (180 - x_rot[0]) }); 
-            cameraObj.setAttribute('rotation', { x: x_rot[1], y: -x_rot[2], z: 0 }); 
+            cameraObj.setAttribute('rotation', { x: x_rot[1], y: -x_rot[2], z: 0}); 
             
           };
         };
@@ -173,7 +173,7 @@ coordinates.map((coordinate, index) => {
           coordinate && (
             <>
             <a-entity key={key_y} obj-model="obj: #gun-obj; mtl: #gun-mtl;" position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
-            <a-entity key={key_x} mixin={mixin_x} position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
+            <a-entity key={key_x} mixin={mixin_x} position={shootLine.join(' ')} rotation={x_rot.join(' ')} />
             {/* <a-entity key={key_y} mixin={mixin_y} position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
             <a-entity key={key_z} mixin={mixin_z} position={coordinate.join(' ')} rotation={x_rot.join(' ')} /> */}
           </>)
