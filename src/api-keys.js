@@ -9,6 +9,7 @@ const apiKeys = {
   MAPBOX: process.env.SKYBRUSH_MAPBOX_API_KEY,
   MAPTILER: process.env.SKYBRUSH_MAPTILER_API_KEY,
   NEXTZEN: process.env.SKYBRUSH_NEXTZEN_API_KEY,
+  GOOGLE: process.env.SKYBRUSH_GOOGLE_API_KEY,
 };
 
 export default apiKeys;
