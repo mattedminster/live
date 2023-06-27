@@ -30,7 +30,7 @@ function guessPort() {
     if (url.port && url.port.length > 0) {
       return url.port;
     } else if (url.protocol === 'http:') {
-      return 80;
+      return 5002;
     } else if (url.protocol === 'https:') {
       return 443;
     } else {
