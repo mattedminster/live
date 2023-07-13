@@ -145,7 +145,7 @@ export async function getRTKStatus(hub) {
       survey: response.body.survey,
     };
   }
-
+  console.log("response.body.type", response)
   throw new Error('Unexpected response for RTK subsystem status query');
 }
 
