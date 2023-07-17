@@ -5,6 +5,9 @@ import { skybrushToThreeJsPosition } from '@skybrush/aframe-components/lib/spati
 import { cameraRef, getSceneDOMNode } from './refs';
 import { resetZoom, rotateViewTowards } from './slice';
 
+import {getBeaconAttitude, getBeaconName, getBeaconForThreeDView} from '~/features/beacons/selectors';
+
+
 /**
  * Saga that listens for camera-related actions dispatched from the store and
  * animates the 3D view appropriately.
@@ -16,6 +19,11 @@ export default function* cameraAnimatorSaga() {
   while (true) {
     const action = yield take([RESET_ZOOM, ROTATE_VIEW_TOWARDS]);
     const controller = getCameraController();
+    for (let prop in action){
+      console.log("prop:" + prop);
+    }
+    console.log("action:" + action);
+    console.log("action payload", action.payload);
 
     if (controller) {
       switch (action.type) {
@@ -26,6 +34,7 @@ export default function* cameraAnimatorSaga() {
 
         case ROTATE_VIEW_TOWARDS:
           handleViewRotationTowards(controller, action.payload);
+          
           setFocusOnScene();
           break;
 
@@ -50,12 +59,20 @@ function getCameraController() {
 }
 
 function handleViewRotationTowards(controller, point) {
-  const target = { lookAt: skybrushToThreeJsPosition(point) };
+  //split them up 
+  const target_point = point.slice(0, 3);
+  const target_position = point.slice(-3);
+  
+  console.log("target_point: ", target_point);
+  console.log("target_postion: ", target_position);
 
+  const target = { lookAt: skybrushToThreeJsPosition(target_point) };
+  
   const cameraObj = document.querySelector('a-camera');
-  const zTarget = point[2] + 15;
+  //instead of going birds eye lets shift the camera to the posistion of the rtk system
+  //const zTarget = point[2] + 15;
 
-  cameraObj.setAttribute('position', { x: point[0], y: zTarget, z: point[1] }); 
+  cameraObj.setAttribute('position', { x: -target_position[1], y: target_position[2], z: -target_position[0] }); 
   controller.startTransitionTo(target);
 }
 

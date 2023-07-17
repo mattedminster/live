@@ -35,7 +35,7 @@ export const getSelectedBeaconIds = selectionForSubset(globalIdToBeaconId);
  * `lat` and `agl` properties and that returns the corresponding coordinate
  * in the coordinate system used by the 3D view.
  */
-const getGPSToThreeJSTransformation = createSelector(
+export const getGPSToThreeJSTransformation = createSelector(
   getFlatEarthCoordinateTransformer,
   (transformation) => {
     const flipY = transformation?.type !== 'nwu';

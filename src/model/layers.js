@@ -97,7 +97,7 @@ const _propertiesForLayerTypes = {
     label: 'Base layer',
     icon: <Map />,
     parameters: {
-      source: 'bingMaps.aerialWithLabels',
+      source: 'googleMaps.satellite',
     },
   },
   [LayerType.BEACONS]: {

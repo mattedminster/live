@@ -2,6 +2,8 @@ import AFrame from '~/aframe/aframe';
 import { showError } from '~/features/snackbar/actions';
 import { getActiveUAVIds } from '~/features/uavs/selectors';
 
+import {getBeaconGPSPositions, getBeaconForThreeDView, getBeaconsInOrder, getGPSToThreeJSTransformation} from '~/features/beacons/selectors';
+
 import { getDroneFlockDOMNode } from './refs';
 import { rotateViewTowards } from './slice';
 
@@ -29,6 +31,7 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
   }
 
   const center = new THREE.Vector3();
+  const position = new THREE.Vector3();
   let numberOfVisibleEntities = 0;
   for (const uavId of activeUAVIds) {
     const entity = flockComponent.getEntityForUAVById(uavId);
@@ -39,6 +42,23 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
     }
   }
 
+  //const beacons = getBeaconGPSPositions(state);
+  const beacon_positions = getBeaconForThreeDView(state);
+  const beacons = getBeaconsInOrder(state);
+  var rtk_position = null;
+
+  for (const [index, beacon] of beacons.entries()) {
+    console.log("beacon!!", beacon);
+    
+    if (beacon.id.includes("rtk")){
+
+      rtk_position = beacon_positions[index];
+
+    }
+    
+  }
+
+
   if (numberOfVisibleEntities > 0) {
     center.divideScalar(numberOfVisibleEntities);
 
@@ -47,7 +67,18 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
     center.y = center.y + 0;
     center.z = center.z;
 
-
-    dispatch(rotateViewTowards(center.toArray()));
+    let response = center.toArray();
+    if (rtk_position == null){
+      console.log("not rtk found using default birds eye view")
+      response.push(center.x);
+      response.push(center.y);
+      response.push(center.z + 15);
+    }else{
+      response.push(rtk_position[0]);
+      response.push(rtk_position[1]);
+      response.push(rtk_position[2]);
+    }
+    
+    dispatch(rotateViewTowards(response));
   }
 };
