@@ -28,7 +28,10 @@ function guessPort() {
   } else {
     const url = new URL(window.location.href);
     if (url.port && url.port.length > 0) {
-      return url.port;
+      console.log("url.port:" + url.port);
+      //hardcoding for renegade labs
+      return 5002;
+      //return url.port;
     } else if (url.protocol === 'http:') {
       return 5002;
     } else if (url.protocol === 'https:') {
