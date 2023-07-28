@@ -103,7 +103,7 @@ const { actions, reducer } = createSlice({
         },
         'environment-flight-path-clear': {
           id: 'environment-flight-path-clear',
-          label: 'No people below flight paths',
+          label: 'No people in game area',
           groupId: 'environment',
         },
       },

@@ -18,7 +18,7 @@ const formatStatusText = (status) => {
       return 'No geofence defined yet';
 
     case Status.SUCCESS:
-      return 'Automatic geofence in use';
+      return 'Geofence in use';
 
     case Status.WARNING:
       return 'Manual geofence in use';

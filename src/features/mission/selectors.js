@@ -269,6 +269,6 @@ export const getGeofenceStatus = createSelector(
       ? Status.OFF
       : featuresById[geofencePolygonId].owner === 'show'
       ? Status.SUCCESS
-      : Status.WARNING;
+      : Status.SUCCESS;
   }
 );
