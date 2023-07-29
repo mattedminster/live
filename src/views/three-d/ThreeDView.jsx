@@ -29,6 +29,10 @@ import { isMapCoordinateSystemLeftHanded } from '~/selectors/map';
 
 import glowImage from '~/../assets/img/sphere-glow-hollow.png';
 import obj from '~/../assets/models/rl_shotgun_ned.obj';
+import mtlBlue from '~/../assets/models/shotgun-blue.mtl';
+import mtlRed from '~/../assets/models/shotgun-red.mtl';
+import mtlGreen from '~/../assets/models/shotgun-green.mtl';
+
 import mtl from '~/../assets/models/shotgun.mtl';
 const images = {
   glow: glowImage,
@@ -108,7 +112,10 @@ const ThreeDView = React.forwardRef((props, ref) => {
     >
       <a-assets>
       <a-asset-item id="gun-obj" src="~/../assets/models/rl_shotgun_ned.obj"></a-asset-item>
-      <a-asset-item id="gun-mtl" src="~/../assets/models/shotgun.mtl"></a-asset-item>
+      {/* <a-asset-item id="gun-mtl" src="~/../assets/models/shotgun.mtl"></a-asset-item> */}
+      <a-asset-item id="gun-mtl-blue" src="~/../assets/models/shotgun-blue.mtl"></a-asset-item>
+      <a-asset-item id="gun-mtl-red" src="~/../assets/models/shotgun-red.mtl"></a-asset-item>
+      <a-asset-item id="gun-mtl-green" src="~/../assets/models/shotgun-green.mtl"></a-asset-item>
       
 
         <img crossOrigin='anonymous' id='glow-texture' src={images.glow} />

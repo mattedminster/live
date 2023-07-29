@@ -113,6 +113,15 @@ coordinates.map((coordinate, index) => {
         const key_x = `${mixin_x}-${index}`;
         const key_y = `${mixin_y}-${index}`;
         const key_z = `${mixin_z}-${index}`;
+        var gun_color_mix = '';
+        if (player_name.includes("1")){
+          gun_color_mix = 'obj: #gun-obj; mtl: #gun-mtl-red;'
+        }else if (player_name.includes("2")){
+          gun_color_mix = 'obj: #gun-obj; mtl: #gun-mtl-green;';
+        }else if (player_name.includes("3")){
+          gun_color_mix = 'obj: #gun-obj; mtl: #gun-mtl-blue;'
+        };
+
         
         let x_rot = [0,0,0];
         var roll = player_rotation[0];
@@ -172,7 +181,7 @@ coordinates.map((coordinate, index) => {
           return (
           coordinate && (
             <>
-            <a-entity key={key_y} obj-model="obj: #gun-obj; mtl: #gun-mtl;" position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
+            <a-entity key={key_y} obj-model={gun_color_mix} position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
             <a-entity key={key_x} mixin={mixin_x} position={shootLine.join(' ')} rotation={x_rot.join(' ')} />
             {/* <a-entity key={key_y} mixin={mixin_y} position={coordinate.join(' ')} rotation={x_rot.join(' ')} />
             <a-entity key={key_z} mixin={mixin_z} position={coordinate.join(' ')} rotation={x_rot.join(' ')} /> */}
