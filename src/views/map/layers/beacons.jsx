@@ -57,6 +57,48 @@ const createBeaconStyle = (label, selected, active) => {
     styles.push(activeMarkerStyles[active ? 1 : 0]);
   }
 
+  if (label.includes("1")){
+    //console.log("player 1");
+    styles.push(
+      /* Label */
+      new Style({
+        image: new Circle({
+          displacement: [0, 2],
+          fill: fill(RGBColors.error),
+          stroke: shadowVeryThinOutline,
+          radius: 6,
+        }),
+      })
+    );
+  }else if (label.includes("2")){
+    //console.log("player 2");
+    styles.push(
+      /* Label */
+      new Style({
+        image: new Circle({
+          displacement: [0, 2],
+          fill: fill(RGBColors.success),
+          stroke: shadowVeryThinOutline,
+          radius: 6,
+        }),
+      })
+    );
+  }else if (label.includes("3")){
+    //console.log("player 3");
+    styles.push(
+      /* Label */
+      new Style({
+        image: new Circle({
+          displacement: [0, 2],
+          fill: fill(RGBColors.info),
+          stroke: shadowVeryThinOutline,
+          radius: 6,
+        }),
+      })
+    );
+  }
+
+
   styles.push(
     /* Label */
     new Style({

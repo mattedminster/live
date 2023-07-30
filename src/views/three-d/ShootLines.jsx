@@ -110,16 +110,22 @@ coordinates.map((coordinate, index) => {
         const mixin_y = `${mixin}-y`;
         const mixin_z = `${mixin}-z`;
 
-        const key_x = `${mixin_x}-${index}`;
-        const key_y = `${mixin_y}-${index}`;
-        const key_z = `${mixin_z}-${index}`;
+        var key_x = `${mixin_x}-${index}`;
+        var key_y = `${mixin_y}-${index}`;
+        var key_z = `${mixin_z}-${index}`;
         var gun_color_mix = '';
         if (player_name.includes("1")){
           gun_color_mix = 'obj: #gun-obj; mtl: #gun-mtl-red;'
+          key_x = `${mixin_x}-${index}-red`;
+          key_y = `${mixin_y}-${index}-red`;
         }else if (player_name.includes("2")){
           gun_color_mix = 'obj: #gun-obj; mtl: #gun-mtl-green;';
+          key_x = `${mixin_x}-${index}-green`;
+          key_y = `${mixin_y}-${index}-green`;
         }else if (player_name.includes("3")){
           gun_color_mix = 'obj: #gun-obj; mtl: #gun-mtl-blue;'
+          key_x = `${mixin_x}-${index}-blue`;
+          key_y = `${mixin_y}-${index}-blue`;
         };
 
         
