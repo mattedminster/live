@@ -80,5 +80,18 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
     }
     
     dispatch(rotateViewTowards(response));
+  }else{
+      console.log("no visible entities were hardcoding!")
+      //hard code some mods that work good for us
+      let response = center.toArray();
+      center.x = 0;
+      center.y = 0;
+      center.z = 100;
+      response.push(center.x);
+      response.push(center.y);
+      response.push(center.z + 15);
+      dispatch(rotateViewTowards(response));
+
   }
+  
 };

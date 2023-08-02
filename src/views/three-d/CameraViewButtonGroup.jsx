@@ -37,12 +37,26 @@ const CameraViewButtonGroup = ({
       >
         1
       </ToggleButton>
+      <ToggleButton
+        selected={cameraView === '2'}
+        value='2'
+        onClick={() => onChange('2')}
+      >
+        2
+      </ToggleButton>
+      <ToggleButton
+        selected={cameraView === '3'}
+        value='3'
+        onClick={() => onChange('3')}
+      >
+        3
+      </ToggleButton>
     </ToggleButtonGroup>
   </>
 );
 
 CameraViewButtonGroup.propTypes = {
-  cameraView: PropTypes.oneOf(['birdseye', '1']),
+  cameraView: PropTypes.oneOf(['birdseye', '1', '2', '3']),
   onChange: PropTypes.func,
 
 };

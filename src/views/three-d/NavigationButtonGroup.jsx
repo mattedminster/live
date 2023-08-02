@@ -58,7 +58,7 @@ const NavigationButtonGroup = ({
 
 NavigationButtonGroup.propTypes = {
   mode: PropTypes.oneOf(['walk', 'fly']),
-  cameraView: PropTypes.oneOf(['birdseye', '1', 'control_station']),
+  cameraView: PropTypes.oneOf(['birdseye', '1', '2', '3']),
   onChange: PropTypes.func,
   onResetZoom: PropTypes.func,
   onRotateCameraTowardsDrones: PropTypes.func,
