@@ -118,7 +118,7 @@ const AGLgrid = ({ coordinates, mixin, rotation, name, altitude, cameraView }) =
   coordinates.map((coordinate, index) => {
     const amsl = altitude - 1.4;
   
-
+    console.log("amsl", amsl);
     let pos = [0, 0, amsl];
 
     const scale = .5;
