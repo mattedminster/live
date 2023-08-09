@@ -19,11 +19,9 @@ export default function* cameraAnimatorSaga() {
   while (true) {
     const action = yield take([RESET_ZOOM, ROTATE_VIEW_TOWARDS]);
     const controller = getCameraController();
-    for (let prop in action){
-      console.log("prop:" + prop);
-    }
-    console.log("action:" + action);
-    console.log("action payload", action.payload);
+ 
+    //console.log("action:" + action);
+    //console.log("action payload", action.payload);
 
     if (controller) {
       switch (action.type) {
@@ -63,16 +61,18 @@ function handleViewRotationTowards(controller, point) {
   const target_point = point.slice(0, 3);
   const target_position = point.slice(-3);
   
-  console.log("target_point: ", target_point);
-  console.log("target_postion: ", target_position);
+  //console.log("target_point: ", target_point);
+  //console.log("target_postion: ", target_position);
 
   const target = { lookAt: skybrushToThreeJsPosition(target_point) };
   
   const cameraObj = document.querySelector('a-camera');
   //instead of going birds eye lets shift the camera to the posistion of the rtk system
   //const zTarget = point[2] + 15;
-
-  cameraObj.setAttribute('position', { x: -target_position[1], y: target_position[2], z: -target_position[0] }); 
+  if (target_position[2] < 1){
+    cameraObj.setAttribute('position', { x: -target_position[1], y: target_position[2], z: -target_position[0] }); 
+  }
+  
   controller.startTransitionTo(target);
 }
 

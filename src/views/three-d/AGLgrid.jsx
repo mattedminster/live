@@ -123,9 +123,9 @@ const AGLgrid = ({ coordinates, mixin, rotation, name, altitude, cameraView }) =
 
     const scale = .5;
     return (
-      <a-entity position={pos.join(' ')} rotation="90 0 0" scale={`${scale} ${scale} ${scale}`}>
+      <a-entity key="agl-grid" position={pos.join(' ')} rotation="90 0 0" scale={`${scale} ${scale} ${scale}`}>
         {/* Move the floor slightly down to ensure that the coordinate axes are nicely visible */}
-        <a-entity
+        <a-entity key="outdoor-rl-ent"
           environment={objectToString({
             ...(environments['outdoor-rl-dark']),
 

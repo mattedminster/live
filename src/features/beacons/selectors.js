@@ -77,7 +77,7 @@ export const getBeaconGPSPositions = createSelector(
 
       for (const [key, value] of Object.entries(beacons.byId)) {
         if (value.position != null){
-        console.log("value.position: " + value.position);
+        //console.log("value.position: " + value.position.lat + " " + value.position.lon + " " + value.position.amsl);
         const coordinate = {lon: value.position.lon, lat: value.position.lat, amsl: value.position.amsl};
         result.push(coordinate);
         }else{
