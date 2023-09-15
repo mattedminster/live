@@ -68,6 +68,7 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
     center.z = center.z;
 
     let response = center.toArray();
+    console.log("rtk_position", rtk_position);
     if (rtk_position == null){
       console.log("not rtk found using default birds eye view")
       response.push(center.x);
