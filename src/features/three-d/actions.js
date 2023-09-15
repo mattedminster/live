@@ -58,7 +58,7 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
     
   }
 
-
+  console.log("number of visible entities ", numberOfVisibleEntities);
   if (numberOfVisibleEntities > 0) {
     center.divideScalar(numberOfVisibleEntities);
 
