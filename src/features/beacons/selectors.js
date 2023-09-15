@@ -49,6 +49,7 @@ export const getGPSToThreeJSTransformation = createSelector(
         coordinate.lat,
         coordinate.amsl,
       ]);
+      console.log("GPS to threejs result: " + result)
 
       if (flipY) {
         console.log("flipping Y");
