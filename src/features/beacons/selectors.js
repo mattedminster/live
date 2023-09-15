@@ -44,6 +44,8 @@ export const getGPSToThreeJSTransformation = createSelector(
         return null;
       }
 
+      console.log("cord: " + coordinate);
+
       const result = transformation.fromLonLatAgl([
         coordinate.lon,
         coordinate.lat,
