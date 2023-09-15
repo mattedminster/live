@@ -44,14 +44,14 @@ export const getGPSToThreeJSTransformation = createSelector(
         return null;
       }
 
-      console.log("cord: " + JSON.stringify(coordinate,null,2));
+      //console.log("cord: " + JSON.stringify(coordinate,null,2));
 
       const result = transformation.fromLonLatAgl([
         coordinate.lon,
         coordinate.lat,
         coordinate.amsl,
       ]);
-      console.log("GPS to threejs result: " + result)
+      //console.log("GPS to threejs result: " + result)
 
       if (flipY) {
         console.log("flipping Y");

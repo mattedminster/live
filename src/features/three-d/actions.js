@@ -52,13 +52,13 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
     
     if (beacon.id.includes("rtk")){
 
-      rtk_position = beacon_positions[index];
+      //rtk_position = beacon_positions[index]; //right now were passing through gps cords for some reason
 
     }
     
   }
 
-  console.log("number of visible entities ", numberOfVisibleEntities);
+ 
   if (numberOfVisibleEntities > 0) {
     center.divideScalar(numberOfVisibleEntities);
 
