@@ -76,11 +76,17 @@ export const getBeaconGPSPositions = createSelector(
       const result = [];
 
       for (const [key, value] of Object.entries(beacons.byId)) {
-        if (value.position != null){
-        //console.log("value.position: " + value.position.lat + " " + value.position.lon + " " + value.position.amsl);
-        const coordinate = {lon: value.position.lon, lat: value.position.lat, amsl: value.position.amsl};
-        result.push(coordinate);
-        }else{
+        try{
+          if (value.position != null){
+          //console.log("value.position: " + value.position.lat + " " + value.position.lon + " " + value.position.amsl);
+          const coordinate = {lon: value.position.lon, lat: value.position.lat, amsl: value.position.amsl};
+          result.push(coordinate);
+          }else{
+            const coordinate = {lon: 0, lat: 0, amsl: 0};
+            result.push(coordinate);
+          }
+        }catch(err){
+          console.log("error in getBeaconGPSPositions: " + err);
           const coordinate = {lon: 0, lat: 0, amsl: 0};
           result.push(coordinate);
         }
