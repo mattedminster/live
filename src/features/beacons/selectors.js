@@ -126,7 +126,7 @@ export const getBeaconAttitude = createSelector(
     for (const [uav, data] of Object.entries(uavs.byId)) {
       
       const intUav = parseInt(uav);
-      if (intUav > 125) {
+      if (intUav < 125) {
         altitudes.push(data.position.amsl);
       }
       

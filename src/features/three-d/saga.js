@@ -72,9 +72,10 @@ function handleViewRotationTowards(controller, point) {
   if (target_position[2] < 1){
     cameraObj.setAttribute('position', { x: -target_position[1], y: target_position[2], z: -target_position[0] }); 
   }else{
-    console.log("target_position[2] > 1");
-    const zTarget = point[2] + 15;
-    cameraObj.setAttribute('position', { x: point[0], y: zTarget, z: point[1] });
+    console.log("Target is too high, going default view");
+    const zTarget = point[2] + 2;
+    const xTarget = point[0] + -10;
+    cameraObj.setAttribute('position', { x: xTarget, y: zTarget, z: point[1] });
   }
   
   controller.startTransitionTo(target);

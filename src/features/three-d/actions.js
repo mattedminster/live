@@ -48,7 +48,7 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
   var rtk_position = null;
 
   for (const [index, beacon] of beacons.entries()) {
-    console.log("beacon!!", beacon);
+    //console.log("beacon!!", beacon);
     
     if (beacon.id.includes("rtk")){
 
@@ -62,23 +62,33 @@ export const rotateViewToDrones = () => (dispatch, getState) => {
   if (numberOfVisibleEntities > 0) {
     center.divideScalar(numberOfVisibleEntities);
 
-    //hard code some mods that work good for us
-    center.x = center.x + 0;
-    center.y = center.y + 0;
-    center.z = center.z;
-
-    let response = center.toArray();
-    console.log("rtk_position", rtk_position);
+    let response = [];
+   console.log("rtk_position", rtk_position);
     if (rtk_position == null){
-      console.log("not rtk found using default birds eye view")
-      response.push(center.x);
-      response.push(center.y);
-      response.push(center.z + 15);
+      //console.log("not rtk found using default birds eye view!")
+      console.log("center", center)
+      // const cameraObj = document.querySelector('a-camera');
+      // //cameraObj.setAttribute('position', { x: -coordinate[1], y: coordinate[2]+.15, z: -coordinate[0] }); 
+      // cameraObj.setAttribute('position', { x: center.x, y: center.y, z: center.z + 100 }); 
+      if (center.x > 1000){ //adding because for some weird reason center is being returned as a gps coordinate if its more than 1000 meters away that def not right
+        console.log("center is too far away, going default view");
+        response.push(0);
+        response.push(0);
+        response.push(0);
+      }else{
+        response.push(center.x);
+        response.push(center.y);
+        response.push(center.z);
+      }
+     
     }else{
+      console.log("rtk found using rtk position")
       response.push(rtk_position[0]);
       response.push(rtk_position[1]);
       response.push(rtk_position[2]);
     }
+
+    //console.log("response", response);
     
     dispatch(rotateViewTowards(response));
   }else{

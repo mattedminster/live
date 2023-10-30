@@ -112,36 +112,53 @@ const environments = {
   },
 };
 
+import { useState, useEffect } from 'react';
 
+const AGLgrid = ({ coordinates, mixin, rotation, name, altitude, cameraView }) => {
+  // State to track if the position has been calculated
+  const [positionCalculated, setPositionCalculated] = useState(false);
 
-const AGLgrid = ({ coordinates, mixin, rotation, name, altitude, cameraView }) =>
-  coordinates.map((coordinate, index) => {
-    const amsl = altitude - 1.4;
-  
-    console.log("amsl", amsl);
-    let pos = [0, 0, amsl];
+  // State to store the position based on the first average altitude
+  const [position, setPosition] = useState([0, 0, 0]);
 
-    const scale = .5;
+  useEffect(() => {
+    if (!positionCalculated && coordinates.length > 0) {
+      // Calculate the first average altitude
+      const firstAverageAltitude = altitude;
+
+      const scale = 0.5;
+
+      // Set the position using the first average altitude
+      const pos = [0, 0, firstAverageAltitude];
+
+      // Update the position and set positionCalculated to true
+      setPosition(pos);
+      setPositionCalculated(true);
+    }
+  }, [coordinates, positionCalculated]);
+
+  if (positionCalculated) {
     return (
-      <a-entity key="agl-grid" position={pos.join(' ')} rotation="90 0 0" scale={`${scale} ${scale} ${scale}`}>
+      <a-entity
+        key="agl-grid"
+        position={position.join(' ')}
+        rotation="90 0 0"
+        scale={`0.5 0.5 0.5`}
+      >
         {/* Move the floor slightly down to ensure that the coordinate axes are nicely visible */}
-        <a-entity key="outdoor-rl-ent"
+        <a-entity
+          key="outdoor-rl-ent"
           environment={objectToString({
             ...(environments['outdoor-rl-dark']),
-
           })}
         />
       </a-entity>
     );
-    // return (
-      
-    //   coordinate && (
-    //     <>
-    //     <a-entity obj-model="obj: #gun-obj;" position={coordinate.join(' ')}/>
-    //   </>)
-    // );
+  } else {
+    return null; // Return null until the position is calculated
+  }
+};
 
-  });
 
 AGLgrid.propTypes = {
   coordinates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
