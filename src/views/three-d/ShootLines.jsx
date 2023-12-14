@@ -147,6 +147,7 @@ coordinates.map((coordinate, index) => {
         // Create a rotation matrix for a 180-degree rotation around the x-axis
         const rotationMatrix = new THREE.Matrix4();
         // pitch, yaw, roll
+        //var rot_matrix = new THREE.Euler(toRadians(0), toRadians(0), toRadians(180), 'ZYX'); beofre matt messed with it ;)
         var rot_matrix = new THREE.Euler(toRadians(0), toRadians(0), toRadians(180), 'ZYX');
         rotationMatrix.makeRotationFromEuler(rot_matrix);
 
