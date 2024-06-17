@@ -14,7 +14,9 @@ const config = {
   perspectives: ['default'],
   server: {
     connectAutomatically: true,
-    hostName: 'localhost',
+    preventManualConnection: true,
+    hostName: '192.168.1.2',
+    port: 5000,
     // port and protocol will be inferred during onboarding
   },
   session: {},
