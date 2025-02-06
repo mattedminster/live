@@ -105,17 +105,13 @@ export class BatterySettings {
    * Estimates a rough battery charge percentage, given the voltage per cell and
    * the battery thresholds in this class instance.
    */
-  estimatePercentageFromVoltagePerCell = (voltagePerCell) => {
+  estimatePercentageFromVoltagePerCell = (voltagePerCell, isFlying) => {
     if (voltagePerCell <= this.emptyVoltage) {
       return 0;
-    } else if (voltagePerCell >= this.fullChargeVoltage) {
-      return 100;
+    } else if (this.isFlying) {
+      return Math.round(170 * voltagePerCell ** .58 - 750); // TODO max and min at 100 and 0
     } else {
-      return Math.round(
-        ((voltagePerCell - this.emptyVoltage) /
-          (this.fullChargeVoltage - this.emptyVoltage)) *
-          100
-      );
+      return Math.round(170 * voltagePerCell ** .66 - 985); // TODO max and min at 100 and 0
     }
   };
 
@@ -123,9 +119,9 @@ export class BatterySettings {
    * Estimates a rough battery charge percentage, given the total voltage of the
    * battery and the number of cells.
    */
-  estimatePercentageFromVoltage = (voltage, cellCount) => {
+  estimatePercentageFromVoltage = (voltage, cellCount, isFlying) => {
     const voltagePerCell = this.getVoltagePerCell(voltage, cellCount);
-    return this.estimatePercentageFromVoltagePerCell(voltagePerCell);
+    return this.estimatePercentageFromVoltagePerCell(voltagePerCell, isFlying);
   };
 
   /**
