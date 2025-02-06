@@ -11,7 +11,6 @@ import { getActiveUAVIds, getUAVById } from './selectors';
 
 const BatteryStatusUpdater = ({ onSetStatus }) => {
   const store = useStore();
-  
 
   useInterval(() => {
     if (!onSetStatus) {
@@ -28,7 +27,7 @@ const BatteryStatusUpdater = ({ onSetStatus }) => {
         voltages.push(battery.voltage);
       }
     }
-    console.log(uav.status)
+
     // TODO(ntamas): figure out how to interpret percentages nicely if some of
     // the UAVs provide a percentage estimate. Maybe if all the UAVs provide a
     // percentage, then we should use that, otherwise we should use voltages?
@@ -39,11 +38,11 @@ const BatteryStatusUpdater = ({ onSetStatus }) => {
       onSetStatus({
         avg: {
           voltage: meanVoltage,
-          percentage: settings.estimatePercentageFromVoltage(meanVoltage, uav.status === 'flying'),
+          percentage: settings.estimatePercentageFromVoltage(meanVoltage),
         },
         min: {
           voltage: minVoltage,
-          percentage: settings.estimatePercentageFromVoltage(minVoltage, uav.status === 'flying'),
+          percentage: settings.estimatePercentageFromVoltage(minVoltage),
         },
       });
     } else {
